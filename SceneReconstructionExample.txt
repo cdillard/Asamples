@@ -1,0 +1,762 @@
+The following text is a Git repository with code. The structure of the text are sections that begin with ----!@#$----, followed by a single line containing the file path and file name, followed by a variable amount of lines containing the file contents. The text representing the Git repository ends when the symbols --END-- are encounted. Any further text beyond --END-- are meant to be interpreted as instructions using the aforementioned Git repository as context.
+----!@#$----
+README.md
+# Scene reconstruction example
+
+Create an immersive experience by making your app's content respond to the local shape of the world.
+
+To learn more about the features that this sample implements, see [Incorporating real-world surroundings in an immersive experience](https://developer.apple.com/documentation/visionos/incorporating-surroundings-in-an-immersive-experience).
+
+> Features in this sample that rely on ARKit only run on Apple Vision Pro, not in Simulator.
+
+----!@#$----
+output.txt
+
+----!@#$----
+Configuration/SampleCode.xcconfig
+//
+// See the LICENSE.txt file for this sample’s licensing information.
+//
+// SampleCode.xcconfig
+//
+
+// The `SAMPLE_CODE_DISAMBIGUATOR` configuration is to make it easier to build
+// and run a sample code project. Once you set your project's development team,
+// you'll have a unique bundle identifier. This is because the bundle identifier
+// is derived based on the 'SAMPLE_CODE_DISAMBIGUATOR' value. Do not use this
+// approach in your own projects—it's only useful for sample code projects because
+// they are frequently downloaded and don't have a development team set.
+SAMPLE_CODE_DISAMBIGUATOR=${DEVELOPMENT_TEAM}
+
+----!@#$----
+SceneReconstructionExample/CubeMeshInteraction.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The view that holds the 3D content for the app's immersive space.
+*/
+
+import ARKit
+import SwiftUI
+import RealityKit
+
+let cubeMeshInteractionID = "CubeMeshInteraction"
+
+/// A view that lets people place cubes in their surroundings based on the scene reconstruction mesh.
+///
+/// A tap on any of the meshes drops a cube above it.
+struct CubeMeshInteraction: View {
+    @Environment(EntityModel.self) var model
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    @Environment(\.openWindow) var openWindow
+    
+    @State private var timer: Timer?
+    
+    var body: some View {
+        RealityView { content in
+            content.add(model.setupContentEntity())
+        }
+        .task {
+            do {
+                if model.dataProvidersAreSupported && model.isReadyToRun {
+                    try await model.session.run([model.sceneReconstruction, model.handTracking])
+                } else {
+                    await dismissImmersiveSpace()
+                }
+            } catch {
+                logger.error("Failed to start session: \(error)")
+                await dismissImmersiveSpace()
+                openWindow(id: "error")
+            }
+        }
+        .task {
+            await model.processHandUpdates()
+        }
+        .task {
+            await model.monitorSessionEvents()
+        }
+        .task(priority: .low) {
+            await model.processReconstructionUpdates()
+        }
+        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { value in
+            let location3D = value.convert(value.location3D, from: .local, to: .scene)
+            model.addCube(tapLocation: location3D)
+        })
+        .onChange(of: model.errorState) {
+            openWindow(id: "error")
+        }
+    }
+}
+
+----!@#$----
+SceneReconstructionExample/EntityModel.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The model that holds app state and the logic for updating the scene and placing cubes.
+*/
+
+import ARKit
+import RealityKit
+
+/// A model type that holds app state and processes updates from ARKit.
+@Observable
+@MainActor
+class EntityModel {
+    let session = ARKitSession()
+    let handTracking = HandTrackingProvider()
+    let sceneReconstruction = SceneReconstructionProvider()
+
+    var contentEntity = Entity()
+
+    private var meshEntities = [UUID: ModelEntity]()
+    private let fingerEntities: [HandAnchor.Chirality: ModelEntity] = [
+        .left: .createFingertip(),
+        .right: .createFingertip()
+    ]
+    
+    var errorState = false
+
+    /// Sets up the root entity in the scene.
+    func setupContentEntity() -> Entity {
+        for entity in fingerEntities.values {
+            contentEntity.addChild(entity)
+        }
+
+        return contentEntity
+    }
+    
+    var dataProvidersAreSupported: Bool {
+        HandTrackingProvider.isSupported && SceneReconstructionProvider.isSupported
+    }
+    
+    var isReadyToRun: Bool {
+        handTracking.state == .initialized && sceneReconstruction.state == .initialized
+    }
+    
+    /// Updates hand information from ARKit.
+    func processHandUpdates() async {
+        for await update in handTracking.anchorUpdates {
+            let handAnchor = update.anchor
+
+            guard
+                handAnchor.isTracked,
+                let indexFingerTipJoint = handAnchor.handSkeleton?.joint(.indexFingerTip),
+                indexFingerTipJoint.isTracked else { continue }
+            
+            let originFromIndexFingerTip = handAnchor.originFromAnchorTransform * indexFingerTipJoint.anchorFromJointTransform
+
+            fingerEntities[handAnchor.chirality]?.setTransformMatrix(originFromIndexFingerTip, relativeTo: nil)
+        }
+    }
+
+    /// Updates the scene reconstruction meshes as new data arrives from ARKit.
+    func processReconstructionUpdates() async {
+        for await update in sceneReconstruction.anchorUpdates {
+            let meshAnchor = update.anchor
+
+            guard let shape = try? await ShapeResource.generateStaticMesh(from: meshAnchor) else { continue }
+            switch update.event {
+            case .added:
+                let entity = ModelEntity()
+                entity.transform = Transform(matrix: meshAnchor.originFromAnchorTransform)
+                entity.collision = CollisionComponent(shapes: [shape], isStatic: true)
+                entity.components.set(InputTargetComponent())
+                
+                entity.physicsBody = PhysicsBodyComponent(mode: .static)
+                
+                meshEntities[meshAnchor.id] = entity
+                contentEntity.addChild(entity)
+            case .updated:
+                guard let entity = meshEntities[meshAnchor.id] else { continue }
+                entity.transform = Transform(matrix: meshAnchor.originFromAnchorTransform)
+                entity.collision?.shapes = [shape]
+            case .removed:
+                meshEntities[meshAnchor.id]?.removeFromParent()
+                meshEntities.removeValue(forKey: meshAnchor.id)
+            }
+        }
+    }
+    
+    /// Responds to events like authorization revocation.
+    func monitorSessionEvents() async {
+        for await event in session.events {
+            switch event {
+            case .authorizationChanged(type: _, status: let status):
+                logger.info("Authorization changed to: \(status)")
+                
+                if status == .denied {
+                    errorState = true
+                }
+            case .dataProviderStateChanged(dataProviders: let providers, newState: let state, error: let error):
+                logger.info("Data provider changed: \(providers), \(state)")
+                if let error {
+                    logger.error("Data provider reached an error state: \(error)")
+                    errorState = true
+                }
+            @unknown default:
+                fatalError("Unhandled new event type \(event)")
+            }
+        }
+    }
+
+    /// Drops a cube into the immersive space based on the location of a tap.
+    ///
+    /// Cubes participate in gravity and collisions, so they land on elements of the
+    /// scene reconstruction mesh and people can interact with them.
+    func addCube(tapLocation: SIMD3<Float>) {
+        let placementLocation = tapLocation + SIMD3<Float>(0, 0.2, 0)
+
+        let entity = ModelEntity(
+            mesh: .generateBox(size: 0.1, cornerRadius: 0.0),
+            materials: [SimpleMaterial(color: .systemPink, isMetallic: false)],
+            collisionShape: .generateBox(size: SIMD3<Float>(repeating: 0.1)),
+            mass: 1.0)
+
+        entity.setPosition(placementLocation, relativeTo: nil)
+        entity.components.set(InputTargetComponent(allowedInputTypes: .indirect))
+
+        let material = PhysicsMaterialResource.generate(friction: 0.8, restitution: 0.0)
+        entity.components.set(
+            PhysicsBodyComponent(
+                shapes: entity.collision!.shapes,
+                mass: 1.0,
+                material: material,
+                mode: .dynamic)
+        )
+
+        contentEntity.addChild(entity)
+    }
+}
+
+----!@#$----
+SceneReconstructionExample/SceneReconstructionExampleApp.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The app structure.
+*/
+
+import OSLog
+import SwiftUI
+
+/// The entry point for the app.
+@main
+@MainActor
+struct SceneReconstructionExampleApp: App {
+    @State private var model = EntityModel()
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+        
+        WindowGroup(id: "error") {
+            Text("An error occurred; check the app's logs for details.")
+        }
+
+        ImmersiveSpace(id: cubeMeshInteractionID) {
+            CubeMeshInteraction()
+                .environment(model)
+        }
+    }
+}
+
+let logger = Logger(subsystem: "com.apple-samplecode.SceneReconstructionExample", category: "general")
+
+----!@#$----
+SceneReconstructionExample/Extensions.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Helper functions for converting between ARKit and RealityKit types.
+*/
+
+import ARKit
+import RealityKit
+
+extension ModelEntity {
+    /// Creates an invisible sphere that can interact with dropped cubes in the scene.
+    class func createFingertip() -> ModelEntity {
+        let entity = ModelEntity(
+            mesh: .generateSphere(radius: 0.005),
+            materials: [UnlitMaterial(color: .cyan)],
+            collisionShape: .generateSphere(radius: 0.005),
+            mass: 0.0)
+
+        entity.components.set(PhysicsBodyComponent(mode: .kinematic))
+        entity.components.set(OpacityComponent(opacity: 0.0))
+
+        return entity
+    }
+}
+
+----!@#$----
+SceneReconstructionExample/ContentView.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The main view for the app's initial window.
+*/
+
+import SwiftUI
+import RealityKit
+
+/// The initial interface of the app.
+///
+/// It dismisses itself after the immersive space opens and scene reconstruction starts running.
+struct ContentView: View {
+    @State private var showImmersiveSpace = false
+    @State private var immersiveSpaceIsShown = false
+
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    @Environment(\.dismiss) var dismissWindow
+
+    var body: some View {
+        Toggle("Place Cubes", isOn: $showImmersiveSpace)
+            .toggleStyle(.button)
+            .padding()
+            .onChange(of: showImmersiveSpace) { _, shouldShowImmersiveSpace in
+                Task { @MainActor in
+                    if shouldShowImmersiveSpace {
+                        switch await openImmersiveSpace(id: cubeMeshInteractionID) {
+                        case .opened:
+                            immersiveSpaceIsShown = true
+                            dismissWindow()
+                        case .error, .userCancelled:
+                            fallthrough
+                        @unknown default:
+                            immersiveSpaceIsShown = false
+                            showImmersiveSpace = false
+                        }
+                    } else if immersiveSpaceIsShown {
+                        await dismissImmersiveSpace()
+                        immersiveSpaceIsShown = false
+                    }
+                }
+            }
+    }
+}
+
+#Preview(windowStyle: .automatic) {
+    ContentView()
+}
+
+----!@#$----
+SceneReconstructionExample/Info.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSWorldSensingUsageDescription</key>
+	<string>The app requires this so you can place virtual cubes in your surroundings.</string>
+	<key>NSHandsTrackingUsageDescription</key>
+	<string>The app requires this so your hands can interact with the cubes placed in your environment.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationPreferredDefaultSceneSessionRole</key>
+		<string>UIWindowSceneSessionRoleApplication</string>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+</dict>
+</plist>
+
+----!@#$----
+SceneReconstructionExample.xcodeproj/project.pbxproj
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3223EDCA2A9939C6001A3FB7 /* SceneReconstructionExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223EDC92A9939C6001A3FB7 /* SceneReconstructionExampleApp.swift */; };
+		3223EDCC2A9939C6001A3FB7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223EDCB2A9939C6001A3FB7 /* ContentView.swift */; };
+		3223EDCE2A9939C6001A3FB7 /* CubeMeshInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223EDCD2A9939C6001A3FB7 /* CubeMeshInteraction.swift */; };
+		3223EDDB2A993DF1001A3FB7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223EDDA2A993DF1001A3FB7 /* Extensions.swift */; };
+		3223EDDD2A99447B001A3FB7 /* EntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223EDDC2A99447B001A3FB7 /* EntityModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3223EDC22A9939C6001A3FB7 /* SceneReconstructionExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SceneReconstructionExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3223EDC92A9939C6001A3FB7 /* SceneReconstructionExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneReconstructionExampleApp.swift; sourceTree = "<group>"; };
+		3223EDCB2A9939C6001A3FB7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3223EDCD2A9939C6001A3FB7 /* CubeMeshInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeMeshInteraction.swift; sourceTree = "<group>"; };
+		3223EDD42A9939C7001A3FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3223EDDA2A993DF1001A3FB7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3223EDDC2A99447B001A3FB7 /* EntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityModel.swift; sourceTree = "<group>"; };
+		6B69B485B334FA16E70DE8F0 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.txt; sourceTree = "<group>"; };
+		9250B37A4C0A5CE711A64F13 /* SampleCode.xcconfig */ = {isa = PBXFileReference; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		9D064BEED39AAD471F8D06D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3223EDBF2A9939C6001A3FB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3223EDB92A9939C6001A3FB7 = {
+			isa = PBXGroup;
+			children = (
+				9D064BEED39AAD471F8D06D0 /* README.md */,
+				3223EDC42A9939C6001A3FB7 /* SceneReconstructionExample */,
+				3223EDC32A9939C6001A3FB7 /* Products */,
+				3D4540A7F78BA593465F3896 /* Configuration */,
+				75FECCB40C274EBAD3742C00 /* LICENSE */,
+			);
+			sourceTree = "<group>";
+		};
+		3223EDC32A9939C6001A3FB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3223EDC22A9939C6001A3FB7 /* SceneReconstructionExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3223EDC42A9939C6001A3FB7 /* SceneReconstructionExample */ = {
+			isa = PBXGroup;
+			children = (
+				3223EDC92A9939C6001A3FB7 /* SceneReconstructionExampleApp.swift */,
+				3223EDCB2A9939C6001A3FB7 /* ContentView.swift */,
+				3223EDCD2A9939C6001A3FB7 /* CubeMeshInteraction.swift */,
+				3223EDDC2A99447B001A3FB7 /* EntityModel.swift */,
+				3223EDDA2A993DF1001A3FB7 /* Extensions.swift */,
+				3223EDD42A9939C7001A3FB7 /* Info.plist */,
+			);
+			path = SceneReconstructionExample;
+			sourceTree = "<group>";
+		};
+		3D4540A7F78BA593465F3896 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				9250B37A4C0A5CE711A64F13 /* SampleCode.xcconfig */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		75FECCB40C274EBAD3742C00 /* LICENSE */ = {
+			isa = PBXGroup;
+			children = (
+				6B69B485B334FA16E70DE8F0 /* LICENSE.txt */,
+			);
+			name = LICENSE;
+			path = LICENSE;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3223EDC12A9939C6001A3FB7 /* SceneReconstructionExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3223EDD72A9939C7001A3FB7 /* Build configuration list for PBXNativeTarget "SceneReconstructionExample" */;
+			buildPhases = (
+				3223EDBE2A9939C6001A3FB7 /* Sources */,
+				3223EDBF2A9939C6001A3FB7 /* Frameworks */,
+				3223EDC02A9939C6001A3FB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SceneReconstructionExample;
+			productName = SceneReconstructionExample;
+			productReference = 3223EDC22A9939C6001A3FB7 /* SceneReconstructionExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3223EDBA2A9939C6001A3FB7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				ORGANIZATIONNAME = Apple;
+				TargetAttributes = {
+					3223EDC12A9939C6001A3FB7 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 3223EDBD2A9939C6001A3FB7 /* Build configuration list for PBXProject "SceneReconstructionExample" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3223EDB92A9939C6001A3FB7;
+			productRefGroup = 3223EDC32A9939C6001A3FB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3223EDC12A9939C6001A3FB7 /* SceneReconstructionExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3223EDC02A9939C6001A3FB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3223EDBE2A9939C6001A3FB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3223EDDD2A99447B001A3FB7 /* EntityModel.swift in Sources */,
+				3223EDCC2A9939C6001A3FB7 /* ContentView.swift in Sources */,
+				3223EDCA2A9939C6001A3FB7 /* SceneReconstructionExampleApp.swift in Sources */,
+				3223EDCE2A9939C6001A3FB7 /* CubeMeshInteraction.swift in Sources */,
+				3223EDDB2A993DF1001A3FB7 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3223EDD52A9939C7001A3FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9250B37A4C0A5CE711A64F13 /* SampleCode.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = xros;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		3223EDD62A9939C7001A3FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9250B37A4C0A5CE711A64F13 /* SampleCode.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Release;
+		};
+		3223EDD82A9939C7001A3FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9250B37A4C0A5CE711A64F13 /* SampleCode.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.scenereconstruction${SAMPLE_CODE_DISAMBIGUATOR}.SceneReconstructionExample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		3223EDD92A9939C7001A3FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9250B37A4C0A5CE711A64F13 /* SampleCode.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.scenereconstruction${SAMPLE_CODE_DISAMBIGUATOR}.SceneReconstructionExample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3223EDBD2A9939C6001A3FB7 /* Build configuration list for PBXProject "SceneReconstructionExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3223EDD52A9939C7001A3FB7 /* Debug */,
+				3223EDD62A9939C7001A3FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3223EDD72A9939C7001A3FB7 /* Build configuration list for PBXNativeTarget "SceneReconstructionExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3223EDD82A9939C7001A3FB7 /* Debug */,
+				3223EDD92A9939C7001A3FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3223EDBA2A9939C6001A3FB7 /* Project object */;
+}
+
+----!@#$----
+SceneReconstructionExample.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDEDidComputeMac32BitWarning</key>
+	<true/>
+</dict>
+</plist>
+
+--END--

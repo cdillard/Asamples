@@ -1,0 +1,3724 @@
+The following text is a Git repository with code. The structure of the text are sections that begin with ----!@#$----, followed by a single line containing the file path and file name, followed by a variable amount of lines containing the file contents. The text representing the Git repository ends when the symbols --END-- are encounted. Any further text beyond --END-- are meant to be interpreted as instructions using the aforementioned Git repository as context.
+----!@#$----
+README.md
+# Hello World
+
+This app presents information about the Earth and its neighbors
+as a demonstration of the scene types that are available in visionOS.
+The app uses windows, volumes, and immersive spaces to present information
+in ways that best suit different teaching objectives.
+
+For more information about the app and how it works, see
+[Hello World](https://developer.apple.com/documentation/visionos/world)
+in the developer documentation.
+
+----!@#$----
+output.txt
+
+----!@#$----
+Configuration/SampleCode.xcconfig
+//
+// See the LICENSE.txt file for this sample’s licensing information.
+//
+// SampleCode.xcconfig
+//
+
+// The `SAMPLE_CODE_DISAMBIGUATOR` configuration is to make it easier to build
+// and run a sample code project. Once you set your project's development team,
+// you'll have a unique bundle identifier. This is because the bundle identifier
+// is derived based on the 'SAMPLE_CODE_DISAMBIGUATOR' value. Do not use this
+// approach in your own projects—it's only useful for sample code projects because
+// they are frequently downloaded and don't have a development team set.
+SAMPLE_CODE_DISAMBIGUATOR=${DEVELOPMENT_TEAM}
+
+----!@#$----
+World.xcodeproj/project.pbxproj
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C200227D2988392F00732240 /* Entity+Sunlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C200227C2988392F00732240 /* Entity+Sunlight.swift */; };
+		C200227F29883B3900732240 /* GlobeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C200227E29883B3900732240 /* GlobeSettings.swift */; };
+		C20197A429E3D9C900C6A20F /* SatelliteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20197A329E3D9C900C6A20F /* SatelliteEntity.swift */; };
+		C20197A629E4805900C6A20F /* SatelliteEntity+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20197A529E4805900C6A20F /* SatelliteEntity+Configuration.swift */; };
+		C205CF952919C70D0067444C /* Starfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = C205CF942919C70D0067444C /* Starfield.swift */; };
+		C205CF972919CD070067444C /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = C205CF962919CD070067444C /* Sun.swift */; };
+		C20A898F2A37D93C004E8608 /* Sunlight.skybox in Resources */ = {isa = PBXBuildFile; fileRef = C20A898E2A37D93C004E8608 /* Sunlight.skybox */; };
+		C22D1AF228EB403400CE0F8F /* WorldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D1AF128EB403400CE0F8F /* WorldApp.swift */; };
+		C22D1AF628EB403600CE0F8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22D1AF528EB403600CE0F8F /* Assets.xcassets */; };
+		C22D1AF928EB403600CE0F8F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22D1AF828EB403600CE0F8F /* Preview Assets.xcassets */; };
+		C253D5772947E44200B292CA /* OrbitSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C253D5762947E44200B292CA /* OrbitSettings.swift */; };
+		C255636A291D8A0300398FCE /* Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2556369291D8A0300398FCE /* Orbit.swift */; };
+		C25617D829CCB6040064FD50 /* SolarSystemControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25617D729CCB6040064FD50 /* SolarSystemControls.swift */; };
+		C25774D629E219FE00A75567 /* DragRotationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25774D529E219FE00A75567 /* DragRotationModifier.swift */; };
+		C25774D829E2361000A75567 /* TypeTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25774D729E2361000A75567 /* TypeTextModifier.swift */; };
+		C25774DB29E23F8D00A75567 /* GlobeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25774DA29E23F8D00A75567 /* GlobeModule.swift */; };
+		C25774DE29E2401F00A75567 /* SolarSystemModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25774DD29E2401F00A75567 /* SolarSystemModule.swift */; };
+		C25774E129E240EC00A75567 /* OrbitModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25774E029E240EC00A75567 /* OrbitModule.swift */; };
+		C258918F2975EB7E0071BD5F /* SliderGridRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258918E2975EB7E0071BD5F /* SliderGridRow.swift */; };
+		C2589191297625C90071BD5F /* PlacementGesturesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2589190297625C90071BD5F /* PlacementGesturesModifier.swift */; };
+		C25AD07D29EC6C1E0012834D /* EarthEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25AD07C29EC6C1E0012834D /* EarthEntity.swift */; };
+		C25E9E7828EBB5430033B333 /* Earth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25E9E7728EBB5430033B333 /* Earth.swift */; };
+		C25EFB7029DE7D1500D3CBB6 /* Entity+Trace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25EFB6F29DE7D1500D3CBB6 /* Entity+Trace.swift */; };
+		C2A0F2B029D115150009D46C /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A0F2AF29D115150009D46C /* SettingsButton.swift */; };
+		C2A8235E2A858A1C006F6AFF /* SolarSystemToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A8235D2A858A1C006F6AFF /* SolarSystemToggle.swift */; };
+		C2A823602A859109006F6AFF /* OrbitToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A8235F2A859109006F6AFF /* OrbitToggle.swift */; };
+		C2A823622A8591FC006F6AFF /* GlobeToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A823612A8591FC006F6AFF /* GlobeToggle.swift */; };
+		C2A8375F2A2527DB00AD11D6 /* WorldAssets in Frameworks */ = {isa = PBXBuildFile; productRef = C2A8375E2A2527DB00AD11D6 /* WorldAssets */; };
+		C2B0AEED2994B35600021509 /* RotationSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0AEEC2994B35600021509 /* RotationSystem.swift */; };
+		C2B0AEEF2994B39300021509 /* TraceSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0AEEE2994B39300021509 /* TraceSystem.swift */; };
+		C2C1C8DB29ECA8CC00DA5D97 /* EarthEntity+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C1C8DA29ECA8CC00DA5D97 /* EarthEntity+Configuration.swift */; };
+		C2CD36432A3A7682003811D3 /* ModuleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD36422A3A7682003811D3 /* ModuleCard.swift */; };
+		C2D21553294D210B00634A99 /* Globe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D21552294D210B00634A99 /* Globe.swift */; };
+		C2DEDA242996FAAB00F5265B /* GlobeControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DEDA232996FAAB00F5265B /* GlobeControls.swift */; };
+		C2E652D42919E41A007934BC /* SolarSystemSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E652D32919E41A007934BC /* SolarSystemSettings.swift */; };
+		C2E652D62919EBAB007934BC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E652D52919EBAB007934BC /* ViewModel.swift */; };
+		C2E652D8291B09AC007934BC /* SolarSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E652D7291B09AC007934BC /* SolarSystem.swift */; };
+		C2F2CA342A391D4200E1C2A2 /* EarthSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CA332A391D4200E1C2A2 /* EarthSettings.swift */; };
+		C2F2CA362A391D6B00E1C2A2 /* SatelliteSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CA352A391D6B00E1C2A2 /* SatelliteSettings.swift */; };
+		C2F31EF829CA8F4E009742AD /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F31EF729CA8F4E009742AD /* Modules.swift */; };
+		C2F31EFC29CC01BC009742AD /* TableOfContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F31EFB29CC01BC009742AD /* TableOfContents.swift */; };
+		C2F31EFE29CC02D7009742AD /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F31EFD29CC02D7009742AD /* Module.swift */; };
+		C2F31F0029CC0858009742AD /* ModuleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F31EFF29CC0858009742AD /* ModuleDetail.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6FD03BD460C2666C0917AC9F /* SampleCode.xcconfig */ = {isa = PBXFileReference; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		BA5D813EE652D2B6F9AA7B35 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.txt; sourceTree = "<group>"; };
+		C200227C2988392F00732240 /* Entity+Sunlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+Sunlight.swift"; sourceTree = "<group>"; };
+		C200227E29883B3900732240 /* GlobeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeSettings.swift; sourceTree = "<group>"; };
+		C20197A329E3D9C900C6A20F /* SatelliteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatelliteEntity.swift; sourceTree = "<group>"; };
+		C20197A529E4805900C6A20F /* SatelliteEntity+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SatelliteEntity+Configuration.swift"; sourceTree = "<group>"; };
+		C205CF942919C70D0067444C /* Starfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starfield.swift; sourceTree = "<group>"; };
+		C205CF962919CD070067444C /* Sun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
+		C20A898E2A37D93C004E8608 /* Sunlight.skybox */ = {isa = PBXFileReference; lastKnownFileType = file.skybox; path = Sunlight.skybox; sourceTree = "<group>"; };
+		C22D1AEE28EB403400CE0F8F /* World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = World.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C22D1AF128EB403400CE0F8F /* WorldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldApp.swift; sourceTree = "<group>"; };
+		C22D1AF528EB403600CE0F8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C22D1AF828EB403600CE0F8F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C22D1AFA28EB403600CE0F8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C253D5762947E44200B292CA /* OrbitSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitSettings.swift; sourceTree = "<group>"; };
+		C2556369291D8A0300398FCE /* Orbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orbit.swift; sourceTree = "<group>"; };
+		C25617D729CCB6040064FD50 /* SolarSystemControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystemControls.swift; sourceTree = "<group>"; };
+		C25774D529E219FE00A75567 /* DragRotationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragRotationModifier.swift; sourceTree = "<group>"; };
+		C25774D729E2361000A75567 /* TypeTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeTextModifier.swift; sourceTree = "<group>"; };
+		C25774DA29E23F8D00A75567 /* GlobeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeModule.swift; sourceTree = "<group>"; };
+		C25774DD29E2401F00A75567 /* SolarSystemModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystemModule.swift; sourceTree = "<group>"; };
+		C25774E029E240EC00A75567 /* OrbitModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitModule.swift; sourceTree = "<group>"; };
+		C258918E2975EB7E0071BD5F /* SliderGridRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderGridRow.swift; sourceTree = "<group>"; };
+		C2589190297625C90071BD5F /* PlacementGesturesModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacementGesturesModifier.swift; sourceTree = "<group>"; };
+		C25A1C9C28EB495E00B0E173 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C25AD07C29EC6C1E0012834D /* EarthEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthEntity.swift; sourceTree = "<group>"; };
+		C25E9E7728EBB5430033B333 /* Earth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earth.swift; sourceTree = "<group>"; };
+		C25EFB6F29DE7D1500D3CBB6 /* Entity+Trace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+Trace.swift"; sourceTree = "<group>"; };
+		C2A0F2AF29D115150009D46C /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
+		C2A8235D2A858A1C006F6AFF /* SolarSystemToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystemToggle.swift; sourceTree = "<group>"; };
+		C2A8235F2A859109006F6AFF /* OrbitToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitToggle.swift; sourceTree = "<group>"; };
+		C2A823612A8591FC006F6AFF /* GlobeToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeToggle.swift; sourceTree = "<group>"; };
+		C2A837612A25286A00AD11D6 /* WorldAssets */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WorldAssets; sourceTree = "<group>"; };
+		C2B0AEEC2994B35600021509 /* RotationSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationSystem.swift; sourceTree = "<group>"; };
+		C2B0AEEE2994B39300021509 /* TraceSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceSystem.swift; sourceTree = "<group>"; };
+		C2C1C8DA29ECA8CC00DA5D97 /* EarthEntity+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EarthEntity+Configuration.swift"; sourceTree = "<group>"; };
+		C2CD36422A3A7682003811D3 /* ModuleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleCard.swift; sourceTree = "<group>"; };
+		C2D21552294D210B00634A99 /* Globe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globe.swift; sourceTree = "<group>"; };
+		C2DEDA232996FAAB00F5265B /* GlobeControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeControls.swift; sourceTree = "<group>"; };
+		C2E652D32919E41A007934BC /* SolarSystemSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystemSettings.swift; sourceTree = "<group>"; };
+		C2E652D52919EBAB007934BC /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		C2E652D7291B09AC007934BC /* SolarSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystem.swift; sourceTree = "<group>"; };
+		C2F2CA332A391D4200E1C2A2 /* EarthSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthSettings.swift; sourceTree = "<group>"; };
+		C2F2CA352A391D6B00E1C2A2 /* SatelliteSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatelliteSettings.swift; sourceTree = "<group>"; };
+		C2F31EF729CA8F4E009742AD /* Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
+		C2F31EFB29CC01BC009742AD /* TableOfContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfContents.swift; sourceTree = "<group>"; };
+		C2F31EFD29CC02D7009742AD /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		C2F31EFF29CC0858009742AD /* ModuleDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetail.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C22D1AEB28EB403400CE0F8F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2A8375F2A2527DB00AD11D6 /* WorldAssets in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5054F77D55BBBCDEC076AB73 /* LICENSE */ = {
+			isa = PBXGroup;
+			children = (
+				BA5D813EE652D2B6F9AA7B35 /* LICENSE.txt */,
+			);
+			name = LICENSE;
+			path = .;
+			sourceTree = "<group>";
+		};
+		C22CF1A829721FB100CF2EB7 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				C25AD07C29EC6C1E0012834D /* EarthEntity.swift */,
+				C2C1C8DA29ECA8CC00DA5D97 /* EarthEntity+Configuration.swift */,
+				C20197A329E3D9C900C6A20F /* SatelliteEntity.swift */,
+				C20197A529E4805900C6A20F /* SatelliteEntity+Configuration.swift */,
+				C200227C2988392F00732240 /* Entity+Sunlight.swift */,
+				C25EFB6F29DE7D1500D3CBB6 /* Entity+Trace.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		C22CF1AB2972200A00CF2EB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C2E652D52919EBAB007934BC /* ViewModel.swift */,
+				C2F31EFD29CC02D7009742AD /* Module.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C22D1AE528EB403400CE0F8F = {
+			isa = PBXGroup;
+			children = (
+				C25A1C9C28EB495E00B0E173 /* README.md */,
+				C22D1AF028EB403400CE0F8F /* World */,
+				C2A837602A25286A00AD11D6 /* Packages */,
+				C22D1AEF28EB403400CE0F8F /* Products */,
+				E043781D4066DB10F3A83C6E /* Configuration */,
+				5054F77D55BBBCDEC076AB73 /* LICENSE */,
+			);
+			sourceTree = "<group>";
+		};
+		C22D1AEF28EB403400CE0F8F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C22D1AEE28EB403400CE0F8F /* World.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C22D1AF028EB403400CE0F8F /* World */ = {
+			isa = PBXGroup;
+			children = (
+				C22D1AF128EB403400CE0F8F /* WorldApp.swift */,
+				C2DEDA222996F5ED00F5265B /* Modules */,
+				C25774D929E23F7400A75567 /* Globe */,
+				C25774DF29E2404500A75567 /* Orbit */,
+				C25774DC29E23FD000A75567 /* Solar System */,
+				C2A51FB229AB2E5800217068 /* RealityViews */,
+				C22CF1A829721FB100CF2EB7 /* Entities */,
+				C2A51FAB29AA902A00217068 /* Systems */,
+				C2589192297625D90071BD5F /* Modifiers */,
+				C22CF1AB2972200A00CF2EB7 /* Model */,
+				C2F2CA322A391CDC00E1C2A2 /* Settings */,
+				C2A51FAE29AB0AEB00217068 /* Resources */,
+				C22D1AFA28EB403600CE0F8F /* Info.plist */,
+				C22D1AF728EB403600CE0F8F /* Preview Content */,
+			);
+			path = World;
+			sourceTree = "<group>";
+		};
+		C22D1AF728EB403600CE0F8F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C22D1AF828EB403600CE0F8F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C25774D929E23F7400A75567 /* Globe */ = {
+			isa = PBXGroup;
+			children = (
+				C2D21552294D210B00634A99 /* Globe.swift */,
+				C2DEDA232996FAAB00F5265B /* GlobeControls.swift */,
+				C25774DA29E23F8D00A75567 /* GlobeModule.swift */,
+				C2A823612A8591FC006F6AFF /* GlobeToggle.swift */,
+			);
+			path = Globe;
+			sourceTree = "<group>";
+		};
+		C25774DC29E23FD000A75567 /* Solar System */ = {
+			isa = PBXGroup;
+			children = (
+				C2E652D7291B09AC007934BC /* SolarSystem.swift */,
+				C25617D729CCB6040064FD50 /* SolarSystemControls.swift */,
+				C25774DD29E2401F00A75567 /* SolarSystemModule.swift */,
+				C2A8235D2A858A1C006F6AFF /* SolarSystemToggle.swift */,
+			);
+			path = "Solar System";
+			sourceTree = "<group>";
+		};
+		C25774DF29E2404500A75567 /* Orbit */ = {
+			isa = PBXGroup;
+			children = (
+				C2556369291D8A0300398FCE /* Orbit.swift */,
+				C25774E029E240EC00A75567 /* OrbitModule.swift */,
+				C2A8235F2A859109006F6AFF /* OrbitToggle.swift */,
+			);
+			path = Orbit;
+			sourceTree = "<group>";
+		};
+		C2589192297625D90071BD5F /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				C2589190297625C90071BD5F /* PlacementGesturesModifier.swift */,
+				C25774D529E219FE00A75567 /* DragRotationModifier.swift */,
+				C25774D729E2361000A75567 /* TypeTextModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		C2A51FAB29AA902A00217068 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				C2B0AEEC2994B35600021509 /* RotationSystem.swift */,
+				C2B0AEEE2994B39300021509 /* TraceSystem.swift */,
+			);
+			path = Systems;
+			sourceTree = "<group>";
+		};
+		C2A51FAE29AB0AEB00217068 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C22D1AF528EB403600CE0F8F /* Assets.xcassets */,
+				C20A898E2A37D93C004E8608 /* Sunlight.skybox */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C2A51FB229AB2E5800217068 /* RealityViews */ = {
+			isa = PBXGroup;
+			children = (
+				C25E9E7728EBB5430033B333 /* Earth.swift */,
+				C205CF962919CD070067444C /* Sun.swift */,
+				C205CF942919C70D0067444C /* Starfield.swift */,
+			);
+			path = RealityViews;
+			sourceTree = "<group>";
+		};
+		C2A837602A25286A00AD11D6 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				C2A837612A25286A00AD11D6 /* WorldAssets */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		C2DEDA222996F5ED00F5265B /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C2F31EF729CA8F4E009742AD /* Modules.swift */,
+				C2F31EFB29CC01BC009742AD /* TableOfContents.swift */,
+				C2CD36422A3A7682003811D3 /* ModuleCard.swift */,
+				C2F31EFF29CC0858009742AD /* ModuleDetail.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C2F2CA322A391CDC00E1C2A2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C2A0F2AF29D115150009D46C /* SettingsButton.swift */,
+				C200227E29883B3900732240 /* GlobeSettings.swift */,
+				C253D5762947E44200B292CA /* OrbitSettings.swift */,
+				C2E652D32919E41A007934BC /* SolarSystemSettings.swift */,
+				C2F2CA332A391D4200E1C2A2 /* EarthSettings.swift */,
+				C2F2CA352A391D6B00E1C2A2 /* SatelliteSettings.swift */,
+				C258918E2975EB7E0071BD5F /* SliderGridRow.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E043781D4066DB10F3A83C6E /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				6FD03BD460C2666C0917AC9F /* SampleCode.xcconfig */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C22D1AED28EB403400CE0F8F /* World */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C22D1AFD28EB403600CE0F8F /* Build configuration list for PBXNativeTarget "World" */;
+			buildPhases = (
+				C22D1AEA28EB403400CE0F8F /* Sources */,
+				C22D1AEB28EB403400CE0F8F /* Frameworks */,
+				C22D1AEC28EB403400CE0F8F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = World;
+			packageProductDependencies = (
+				C2A8375E2A2527DB00AD11D6 /* WorldAssets */,
+			);
+			productName = HelloGlobe;
+			productReference = C22D1AEE28EB403400CE0F8F /* World.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C22D1AE628EB403400CE0F8F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1510;
+				ORGANIZATIONNAME = Apple;
+				TargetAttributes = {
+					C22D1AED28EB403400CE0F8F = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = C22D1AE928EB403400CE0F8F /* Build configuration list for PBXProject "World" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C22D1AE528EB403400CE0F8F;
+			productRefGroup = C22D1AEF28EB403400CE0F8F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C22D1AED28EB403400CE0F8F /* World */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C22D1AEC28EB403400CE0F8F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C20A898F2A37D93C004E8608 /* Sunlight.skybox in Resources */,
+				C22D1AF928EB403600CE0F8F /* Preview Assets.xcassets in Resources */,
+				C22D1AF628EB403600CE0F8F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C22D1AEA28EB403400CE0F8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2D21553294D210B00634A99 /* Globe.swift in Sources */,
+				C25EFB7029DE7D1500D3CBB6 /* Entity+Trace.swift in Sources */,
+				C25AD07D29EC6C1E0012834D /* EarthEntity.swift in Sources */,
+				C200227F29883B3900732240 /* GlobeSettings.swift in Sources */,
+				C205CF952919C70D0067444C /* Starfield.swift in Sources */,
+				C2A823602A859109006F6AFF /* OrbitToggle.swift in Sources */,
+				C200227D2988392F00732240 /* Entity+Sunlight.swift in Sources */,
+				C253D5772947E44200B292CA /* OrbitSettings.swift in Sources */,
+				C25617D829CCB6040064FD50 /* SolarSystemControls.swift in Sources */,
+				C205CF972919CD070067444C /* Sun.swift in Sources */,
+				C2F2CA362A391D6B00E1C2A2 /* SatelliteSettings.swift in Sources */,
+				C2C1C8DB29ECA8CC00DA5D97 /* EarthEntity+Configuration.swift in Sources */,
+				C2A8235E2A858A1C006F6AFF /* SolarSystemToggle.swift in Sources */,
+				C2589191297625C90071BD5F /* PlacementGesturesModifier.swift in Sources */,
+				C2A823622A8591FC006F6AFF /* GlobeToggle.swift in Sources */,
+				C25774DE29E2401F00A75567 /* SolarSystemModule.swift in Sources */,
+				C25E9E7828EBB5430033B333 /* Earth.swift in Sources */,
+				C25774D829E2361000A75567 /* TypeTextModifier.swift in Sources */,
+				C2F31EFE29CC02D7009742AD /* Module.swift in Sources */,
+				C2F2CA342A391D4200E1C2A2 /* EarthSettings.swift in Sources */,
+				C2F31EFC29CC01BC009742AD /* TableOfContents.swift in Sources */,
+				C2DEDA242996FAAB00F5265B /* GlobeControls.swift in Sources */,
+				C2E652D42919E41A007934BC /* SolarSystemSettings.swift in Sources */,
+				C2F31EF829CA8F4E009742AD /* Modules.swift in Sources */,
+				C20197A629E4805900C6A20F /* SatelliteEntity+Configuration.swift in Sources */,
+				C25774DB29E23F8D00A75567 /* GlobeModule.swift in Sources */,
+				C25774E129E240EC00A75567 /* OrbitModule.swift in Sources */,
+				C2A0F2B029D115150009D46C /* SettingsButton.swift in Sources */,
+				C22D1AF228EB403400CE0F8F /* WorldApp.swift in Sources */,
+				C2E652D62919EBAB007934BC /* ViewModel.swift in Sources */,
+				C25774D629E219FE00A75567 /* DragRotationModifier.swift in Sources */,
+				C2B0AEED2994B35600021509 /* RotationSystem.swift in Sources */,
+				C2B0AEEF2994B39300021509 /* TraceSystem.swift in Sources */,
+				C2E652D8291B09AC007934BC /* SolarSystem.swift in Sources */,
+				C258918F2975EB7E0071BD5F /* SliderGridRow.swift in Sources */,
+				C2CD36432A3A7682003811D3 /* ModuleCard.swift in Sources */,
+				C20197A429E3D9C900C6A20F /* SatelliteEntity.swift in Sources */,
+				C255636A291D8A0300398FCE /* Orbit.swift in Sources */,
+				C2F31F0029CC0858009742AD /* ModuleDetail.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C22D1AFB28EB403600CE0F8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FD03BD460C2666C0917AC9F /* SampleCode.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = xros;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		C22D1AFC28EB403600CE0F8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FD03BD460C2666C0917AC9F /* SampleCode.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Release;
+		};
+		C22D1AFE28EB403600CE0F8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FD03BD460C2666C0917AC9F /* SampleCode.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"World/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.World${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		C22D1AFF28EB403600CE0F8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FD03BD460C2666C0917AC9F /* SampleCode.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"World/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.World${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C22D1AE928EB403400CE0F8F /* Build configuration list for PBXProject "World" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C22D1AFB28EB403600CE0F8F /* Debug */,
+				C22D1AFC28EB403600CE0F8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C22D1AFD28EB403600CE0F8F /* Build configuration list for PBXNativeTarget "World" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C22D1AFE28EB403600CE0F8F /* Debug */,
+				C22D1AFF28EB403600CE0F8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C2A8375E2A2527DB00AD11D6 /* WorldAssets */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WorldAssets;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C22D1AE628EB403400CE0F8F /* Project object */;
+}
+
+----!@#$----
+World.xcodeproj/.xcodesamplecode.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array/>
+</plist>
+
+----!@#$----
+World.xcodeproj/xcuserdata/sprinchar.xcuserdatad/xcschemes/xcschememanagement.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>World.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>
+----!@#$----
+World.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDEDidComputeMac32BitWarning</key>
+	<true/>
+</dict>
+</plist>
+
+----!@#$----
+World.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BuildSystemType</key>
+	<string>Latest</string>
+</dict>
+</plist>
+
+----!@#$----
+World.xcodeproj/xcshareddata/xcschemes/World.xcscheme
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1510"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C22D1AED28EB403400CE0F8F"
+               BuildableName = "World.app"
+               BlueprintName = "World"
+               ReferencedContainer = "container:World.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C22D1AED28EB403400CE0F8F"
+            BuildableName = "World.app"
+            BlueprintName = "World"
+            ReferencedContainer = "container:World.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C22D1AED28EB403400CE0F8F"
+            BuildableName = "World.app"
+            BlueprintName = "World"
+            ReferencedContainer = "container:World.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
+
+----!@#$----
+World/WorldApp.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The main entry point of the Hello World experience.
+*/
+
+import SwiftUI
+import WorldAssets
+
+/// The main entry point of the Hello World experience.
+@main
+struct WorldApp: App {
+    // The view model.
+    @State private var model = ViewModel()
+
+    // The immersion styles for different modules.
+    @State private var orbitImmersionStyle: ImmersionStyle = .mixed
+    @State private var solarImmersionStyle: ImmersionStyle = .full
+
+    var body: some Scene {
+        // The main window that presents the app's modules.
+        WindowGroup("Hello World", id: "modules") {
+            Modules()
+                .environment(model)
+        }
+        .windowStyle(.plain)
+
+        // A volume that displays a globe.
+        WindowGroup(id: Module.globe.name) {
+            Globe()
+                .environment(model)
+        }
+        .windowStyle(.volumetric)
+        .defaultSize(width: 0.6, height: 0.6, depth: 0.6, in: .meters)
+
+        // An immersive space that places the Earth with some of its satellites
+        // in your surroundings.
+        ImmersiveSpace(id: Module.orbit.name) {
+            Orbit()
+                .environment(model)
+        }
+        .immersionStyle(selection: $orbitImmersionStyle, in: .mixed)
+
+        // An immersive Space that shows the Earth, Moon, and Sun as seen from
+        // Earth orbit.
+        ImmersiveSpace(id: Module.solar.name) {
+            SolarSystem()
+                .environment(model)
+        }
+        .immersionStyle(selection: $solarImmersionStyle, in: .full)
+    }
+    
+    init() {
+        // Register all the custom components and systems that the app uses.
+        RotationComponent.registerComponent()
+        RotationSystem.registerSystem()
+        TraceComponent.registerComponent()
+        TraceSystem.registerSystem()
+        SunPositionComponent.registerComponent()
+        SunPositionSystem.registerSystem()
+    }
+}
+
+----!@#$----
+World/Info.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+	<key>UINativeSizeClass</key>
+	<integer>1</integer>
+</dict>
+</plist>
+
+----!@#$----
+World/Settings/SliderGridRow.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A supporting view for controlling developer settings.
+*/
+
+import SwiftUI
+
+/// A grid row that contains a slider across three columns.
+struct SliderGridRow<Value: BinaryFloatingPoint>: View where Value.Stride: BinaryFloatingPoint {
+    var title: String
+    @Binding var value: Value
+    var range: ClosedRange<Value>
+    var fractionLength: Int = 1
+
+    var body: some View {
+        GridRow {
+            Text(title)
+            Slider(value: $value, in: range) {
+                Text(title)
+            }
+            Text(Double(value), format: .number.precision(.fractionLength(fractionLength)))
+                .monospacedDigit()
+                .bold()
+                .gridColumnAlignment(.trailing)
+        }
+    }
+}
+
+#Preview {
+    Grid {
+        SliderGridRow(
+            title: "Some value",
+            value: .constant(0),
+            range: -10 ... 10
+        )
+    }
+    .frame(width: 400)
+    .padding()
+}
+
+----!@#$----
+World/Settings/EarthSettings.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Settings for the Earth entity.
+*/
+
+import SwiftUI
+
+/// Controls for settings specific to the Earth entity.
+struct EarthSettings: View {
+    @Binding var configuration: EarthEntity.Configuration
+
+    private var solarSunAngleBinding: Binding<Double> {
+        Binding<Double>(
+            get: { configuration.sunAngle.degrees },
+            set: { configuration.sunAngle = .degrees($0) }
+        )
+    }
+
+    var body: some View {
+        Section("Earth") {
+            Grid(alignment: .leading, verticalSpacing: 20) {
+                SliderGridRow(
+                    title: "Scale",
+                    value: $configuration.scale,
+                    range: 0 ... 1e3)
+                SliderGridRow(
+                    title: "Rotation speed",
+                    value: $configuration.speed,
+                    range: 0 ... 1,
+                    fractionLength: 3)
+
+                Divider()
+
+                SliderGridRow(
+                    title: "X",
+                    value: $configuration.position.x,
+                    range: -10 ... 10)
+                SliderGridRow(
+                    title: "Y",
+                    value: $configuration.position.y,
+                    range: -10 ... 10)
+                SliderGridRow(
+                    title: "Z",
+                    value: $configuration.position.z,
+                    range: -10 ... 10)
+
+                Divider()
+
+                Toggle("Show Poles", isOn: $configuration.showPoles)
+                SliderGridRow(
+                    title: "Pole height",
+                    value: $configuration.poleLength,
+                    range: 0 ... 1,
+                    fractionLength: 3)
+                SliderGridRow(
+                    title: "Pole thickness",
+                    value: $configuration.poleThickness,
+                    range: 0 ... 1,
+                    fractionLength: 3)
+            }
+        }
+        Section("Sun") {
+            Grid(alignment: .leading, verticalSpacing: 20) {
+                Toggle("Show Sun", isOn: $configuration.showSun)
+                SliderGridRow(
+                    title: "Sun intensity",
+                    value: $configuration.sunIntensity,
+                    range: 0 ... 20)
+                SliderGridRow(
+                    title: "Angle",
+                    value: solarSunAngleBinding,
+                    range: 0 ... 360)
+            }
+        }
+    }
+}
+
+----!@#$----
+World/Settings/GlobeSettings.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Debug setting controls for the globe module.
+*/
+
+import SwiftUI
+
+/// Debug setting controls for the globe module.
+struct GlobeSettings: View {
+    @Environment(ViewModel.self) private var model
+
+    var body: some View {
+        @Bindable var model = model
+        
+        VStack {
+            Text("Globe module debug settings")
+                .font(.title)
+            Form {
+                EarthSettings(configuration: $model.globeEarth)
+                Section("System") {
+                    Grid(alignment: .leading, verticalSpacing: 20) {
+                        Button("Reset") {
+                            model.globeEarth = .globeEarthDefault
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    GlobeSettings()
+        .frame(width: 500)
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/Settings/OrbitSettings.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Debug setting controls for the orbit module.
+*/
+
+import SwiftUI
+
+/// Debug setting controls for the orbit module.
+struct OrbitSettings: View {
+    @Environment(ViewModel.self) private var model
+
+    var body: some View {
+        @Bindable var model = model
+
+        VStack {
+            Text("Orbit module debug settings")
+                .font(.title)
+            Form {
+                EarthSettings(configuration: $model.orbitEarth)
+                SatelliteSettings(configuration: $model.orbitSatellite)
+                SatelliteSettings(configuration: $model.orbitMoon)
+                Section("System") {
+                    Grid(alignment: .leading, verticalSpacing: 20) {
+                        Button("Reset") {
+                            model.orbitEarth = .orbitEarthDefault
+                            model.orbitSatellite = .orbitSatelliteDefault
+                            model.orbitMoon = .orbitMoonDefault
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    OrbitSettings()
+        .frame(width: 500)
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/Settings/SatelliteSettings.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Settings for the satellite entities.
+*/
+
+import SwiftUI
+
+/// Controls for settings that relate to a satellite entity.
+struct SatelliteSettings: View {
+    @Binding var configuration: SatelliteEntity.Configuration
+
+    var body: some View {
+        Section(configuration.name) {
+            Grid(alignment: .leading, verticalSpacing: 20) {
+                Toggle("Visible", isOn: $configuration.isVisible)
+                SliderGridRow(
+                    title: "Speed ratio",
+                    value: $configuration.speedRatio,
+                    range: 0 ... 50,
+                    fractionLength: 1)
+                SliderGridRow(
+                    title: "Altitude",
+                    value: $configuration.altitude,
+                    range: 0 ... 10,
+                    fractionLength: 2)
+                SliderGridRow(
+                    title: "Inclination",
+                    value: inclinationBinding,
+                    range: 0 ... 90,
+                    fractionLength: 0)
+                SliderGridRow(
+                    title: "Scale",
+                    value: $configuration.scale,
+                    range: 0 ... 5,
+                    fractionLength: 2)
+
+                Divider()
+
+                Toggle("Trace", isOn: $configuration.isTraceVisible)
+                SliderGridRow(
+                    title: "Trace width",
+                    value: $configuration.traceWidth,
+                    range: 0 ... 1000)
+            }
+        }
+    }
+
+    var inclinationBinding: Binding<Float> {
+        Binding<Float>(
+            get: { Float(configuration.inclination.degrees) },
+            set: { configuration.inclination = .degrees(Double($0)) }
+        )
+    }
+}
+
+
+----!@#$----
+World/Settings/SettingsButton.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A modifier for adding a developer settings button.
+*/
+
+import SwiftUI
+
+/// A Boolean that determines the visibility of a debug settings button.
+///
+/// It can be helpful during development to have real time control over
+/// aspects of your app's models and content. For example, you might want
+/// to tune a scaling factor so a scaled entity feels just right when
+/// in Full Space. Set the `showDebugSettings` parameter to `true` to
+/// make a button appear as an ornament in the app's main window that enables
+/// you configure certain aspects of each module. You would set this to
+/// `false`, or remove the settings configuration logic entirely, before
+/// shipping the app.
+let showDebugSettings = false
+
+extension View {
+    /// Adds a button in an ornament that opens a settings panel.
+    func settingsButton(
+        module: Module
+    ) -> some View {
+        self.modifier(
+            SettingsButtonModifier(module: module)
+        )
+    }
+}
+
+/// A modifier that adds a button that opens a settings panel.
+private struct SettingsButtonModifier: ViewModifier {
+    var module: Module
+
+    @State private var showSettings = false
+
+    func body(content: Content) -> some View {
+        content
+            .ornament(
+                visibility: showDebugSettings ? .visible : .hidden,
+                attachmentAnchor: .scene(.bottom)
+            ) {
+                Button {
+                    showSettings = true
+                } label: {
+                    Label("Settings", systemImage: "gear")
+                        .labelStyle(.iconOnly)
+                }
+                .popover(isPresented: $showSettings) {
+                    module.settingsView
+                        .padding(.vertical)
+                        .frame(width: 500, height: 400)
+                }
+            }
+    }
+}
+
+extension Module {
+    @ViewBuilder
+    fileprivate var settingsView: some View {
+        switch self {
+        case .globe: GlobeSettings()
+        case .orbit: OrbitSettings()
+        case .solar: SolarSystemSettings()
+        }
+    }
+}
+
+----!@#$----
+World/Settings/SolarSystemSettings.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Debug setting controls for the solar system module.
+*/
+
+import SwiftUI
+
+/// Debug setting controls for the solar system module.
+struct SolarSystemSettings: View {
+    @Environment(ViewModel.self) private var model
+
+    var body: some View {
+        @Bindable var model = model
+        
+        VStack {
+            Text("Solar system module debug settings")
+                .font(.title)
+            Form {
+                EarthSettings(configuration: $model.solarEarth)
+                SatelliteSettings(configuration: $model.solarSatellite)
+                SatelliteSettings(configuration: $model.solarMoon)
+                Section("Sun") {
+                    Grid(alignment: .leading, verticalSpacing: 20) {
+                        SliderGridRow(
+                            title: "Distance to Earth",
+                            value: $model.solarSunDistance,
+                            range: 0 ... 1e3)
+                    }
+                }
+                Section("System") {
+                    Grid(alignment: .leading, verticalSpacing: 20) {
+                        Button("Reset") {
+                            model.solarEarth = .solarEarthDefault
+                            model.solarSatellite = .solarTelescopeDefault
+                            model.solarMoon = .solarMoonDefault
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    SolarSystemSettings()
+        .frame(width: 500)
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/Orbit/OrbitModule.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The module detail content that's specific to the orbit module.
+*/
+
+import SwiftUI
+import RealityKit
+import WorldAssets
+
+private let modelDepth: Double = 200
+
+/// The list of 3D models to display in the winow.
+private enum Item: String, CaseIterable, Identifiable {
+    case satellite, moon, telescope
+    var id: Self { self }
+    var name: String { rawValue.capitalized }
+}
+
+/// The module detail content that's specific to the orbit module.
+struct OrbitModule: View {
+    @Environment(ViewModel.self) private var model
+    @State private var selection: Item = .satellite
+
+    var body: some View {
+        VStack(spacing: 100) {
+            Color.clear
+                .overlay {
+                    ItemView(item: .satellite, orientation: [0.15, 0, 0.15])
+                        .opacity(selection == .satellite ? 1 : 0)
+                }
+                .overlay {
+                    ItemView(item: .moon)
+                        .opacity(selection == .moon ? 1 : 0)
+                }
+                .overlay {
+                    ItemView(item: .telescope, orientation: [-0.3, 0, 0])
+                        .opacity(selection == .telescope ? 1 : 0)
+                }
+                .dragRotation(yawLimit: .degrees(20), pitchLimit: .degrees(20))
+                .offset(z: modelDepth)
+
+            Picker("Satellite", selection: $selection) {
+                ForEach(Item.allCases) { item in
+                    Text(item.name)
+                }
+            }
+            .pickerStyle(.segmented)
+            .accessibilitySortPriority(0)
+            .frame(width: 350)
+        }
+    }
+}
+
+/// A 3D model loaded from the app's asset bundle.
+private struct ItemView: View {
+    var item: Item
+    var orientation: SIMD3<Double> = .zero
+
+    var body: some View {
+        Model3D(named: item.name, bundle: worldAssetsBundle) { model in
+            model.resizable()
+                .scaledToFit()
+                .rotation3DEffect(
+                    Rotation3D(
+                        eulerAngles: .init(angles: orientation, order: .xyz)
+                    )
+                )
+                .frame(depth: modelDepth)
+                .offset(z: -modelDepth / 2)
+                .accessibilitySortPriority(1)
+        } placeholder: {
+            ProgressView()
+                .offset(z: -modelDepth * 0.75)
+        }
+    }
+}
+
+#Preview {
+    OrbitModule()
+        .padding()
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/Orbit/OrbitToggle.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A toggle that activates or deactivates the orbit scene.
+*/
+
+import SwiftUI
+
+/// A toggle that activates or deactivates the orbit scene.
+struct OrbitToggle: View {
+    @Environment(ViewModel.self) private var model
+    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
+
+    var body: some View {
+        @Bindable var model = model
+
+        Toggle(Module.orbit.callToAction, isOn: $model.isShowingOrbit)
+            .onChange(of: model.isShowingOrbit) { _, isShowing in
+                Task {
+                    if isShowing {
+                        await openImmersiveSpace(id: Module.orbit.name)
+                    } else {
+                        await dismissImmersiveSpace()
+                    }
+                }
+            }
+            .toggleStyle(.button)
+    }
+}
+
+#Preview {
+    OrbitToggle()
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/Orbit/Orbit.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The model content for the orbit module.
+*/
+
+import SwiftUI
+import RealityKit
+
+/// The model content for the orbit module.
+struct Orbit: View {
+    @Environment(ViewModel.self) private var model
+
+    @State var axZoomIn: Bool = false
+    @State var axZoomOut: Bool = false
+
+    var body: some View {
+        Earth(
+            earthConfiguration: model.orbitEarth,
+            satelliteConfiguration: [model.orbitSatellite],
+            moonConfiguration: model.orbitMoon
+        ) { event in
+            if event.key.defaultValue == EarthEntity.AccessibilityActions.zoomIn.name.defaultValue {
+                axZoomIn.toggle()
+            } else if event.key.defaultValue == EarthEntity.AccessibilityActions.zoomOut.name.defaultValue {
+                axZoomOut.toggle()
+            }
+        }
+        .placementGestures(
+            initialPosition: Point3D([475, -1200.0, -1200.0]),
+            axZoomIn: axZoomIn,
+            axZoomOut: axZoomOut)
+        .onDisappear {
+            model.isShowingOrbit = false
+        }
+    }
+}
+
+----!@#$----
+World/Modifiers/TypeTextModifier.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A modifier for typing text into a text view.
+*/
+
+import SwiftUI
+
+extension View {
+    /// Makes the specified text appear one letter at a time.
+    func typeText(
+        text: Binding<String>,
+        finalText: String,
+        isFinished: Binding<Bool>,
+        cursor: String = "|",
+        isAnimated: Bool = true
+    ) -> some View {
+        self.modifier(
+            TypeTextModifier(
+                text: text,
+                finalText: finalText,
+                isFinished: isFinished,
+                cursor: cursor,
+                isAnimated: isAnimated
+            )
+        )
+    }
+}
+
+private struct TypeTextModifier: ViewModifier {
+    @Binding var text: String
+    var finalText: String
+    @Binding var isFinished: Bool
+    var cursor: String
+    var isAnimated: Bool
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear {
+                if isAnimated == false {
+                    text = finalText
+                    isFinished = true
+                }
+            }
+            .task {
+                guard isAnimated else { return }
+
+                // Blink the cursor a few times.
+                for _ in 1 ... 2 {
+                    text = cursor
+                    try? await Task.sleep(for: .milliseconds(500))
+                    text = ""
+                    try? await Task.sleep(for: .milliseconds(200))
+                }
+
+                // Type out the title.
+                for index in finalText.indices {
+                    text = String(finalText.prefix(through: index)) + cursor
+                    let milliseconds = (1 + UInt64.random(in: 0 ... 1)) * 100
+                    try? await Task.sleep(for: .milliseconds(milliseconds))
+                }
+
+                // Wrap up the title sequence.
+                try? await Task.sleep(for: .milliseconds(400))
+                text = finalText
+                isFinished = true
+            }
+    }
+}
+
+----!@#$----
+World/Modifiers/PlacementGesturesModifier.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A modifier for placing objects.
+*/
+
+import SwiftUI
+import RealityKit
+
+extension View {
+    /// Listens for gestures and places an item based on those inputs.
+    func placementGestures(
+        initialPosition: Point3D = .zero,
+        axZoomIn: Bool = false,
+        axZoomOut: Bool = false
+    ) -> some View {
+        self.modifier(
+            PlacementGesturesModifier(
+                initialPosition: initialPosition,
+                axZoomIn: axZoomIn,
+                axZoomOut: axZoomOut
+            )
+        )
+    }
+}
+
+/// A modifier that adds gestures and positioning to a view.
+private struct PlacementGesturesModifier: ViewModifier {
+    var initialPosition: Point3D
+    var axZoomIn: Bool
+    var axZoomOut: Bool
+
+    @State private var scale: Double = 1
+    @State private var startScale: Double? = nil
+    @State private var position: Point3D = .zero
+    @State private var startPosition: Point3D? = nil
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear {
+                position = initialPosition
+            }
+            .scaleEffect(scale)
+            .position(x: position.x, y: position.y)
+            .offset(z: position.z)
+
+            // Enable people to move the model anywhere in their space.
+            .simultaneousGesture(DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
+                .handActivationBehavior(.pinch)
+                .onChanged { value in
+                    if let startPosition {
+                        let delta = value.location3D - value.startLocation3D
+                        position = startPosition + delta
+                    } else {
+                        startPosition = position
+                    }
+                }
+                .onEnded { _ in
+                    startPosition = nil
+                }
+            )
+
+            // Enable people to scale the model within certain bounds.
+            .simultaneousGesture(MagnifyGesture()
+                .onChanged { value in
+                    if let startScale {
+                        scale = max(0.1, min(3, value.magnification * startScale))
+                    } else {
+                        startScale = scale
+                    }
+                }
+                .onEnded { value in
+                    startScale = scale
+                }
+            )
+            .onChange(of: axZoomIn) {
+                scale = max(0.1, min(3, scale + 0.2))
+                startScale = scale
+            }
+            .onChange(of: axZoomOut) {
+                scale = max(0.1, min(3, scale - 0.2))
+                startScale = scale
+            }
+    }
+}
+
+----!@#$----
+World/Modifiers/DragRotationModifier.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A modifier for turning drag gestures into rotation.
+*/
+
+import SwiftUI
+import RealityKit
+
+extension View {
+    /// Enables people to drag an entity to rotate it, with optional limitations
+    /// on the rotation in yaw and pitch.
+    func dragRotation(
+        yawLimit: Angle? = nil,
+        pitchLimit: Angle? = nil,
+        sensitivity: Double = 10,
+        axRotateClockwise: Bool = false,
+        axRotateCounterClockwise: Bool = false
+    ) -> some View {
+        self.modifier(
+            DragRotationModifier(
+                yawLimit: yawLimit,
+                pitchLimit: pitchLimit,
+                sensitivity: sensitivity,
+                axRotateClockwise: axRotateClockwise,
+                axRotateCounterClockwise: axRotateCounterClockwise
+            )
+        )
+    }
+}
+
+/// A modifier converts drag gestures into entity rotation.
+private struct DragRotationModifier: ViewModifier {
+    var yawLimit: Angle?
+    var pitchLimit: Angle?
+    var sensitivity: Double
+    var axRotateClockwise: Bool
+    var axRotateCounterClockwise: Bool
+
+    @State private var baseYaw: Double = 0
+    @State private var yaw: Double = 0
+    @State private var basePitch: Double = 0
+    @State private var pitch: Double = 0
+
+    func body(content: Content) -> some View {
+        content
+            .rotation3DEffect(.radians(yaw == 0 ? 0.01 : yaw), axis: .y)
+            .rotation3DEffect(.radians(pitch == 0 ? 0.01 : pitch), axis: .x)
+            .gesture(DragGesture(minimumDistance: 0.0)
+                .targetedToAnyEntity()
+                .onChanged { value in
+                    // Find the current linear displacement.
+                    let location3D = value.convert(value.location3D, from: .local, to: .scene)
+                    let startLocation3D = value.convert(value.startLocation3D, from: .local, to: .scene)
+                    let delta = location3D - startLocation3D
+
+                    // Use an interactive spring animation that becomes
+                    // a spring animation when the gesture ends below.
+                    withAnimation(.interactiveSpring) {
+                        yaw = spin(displacement: Double(delta.x), base: baseYaw, limit: yawLimit)
+                        pitch = spin(displacement: Double(delta.y), base: basePitch, limit: pitchLimit)
+                    }
+                }
+                .onEnded { value in
+                    // Find the current and predicted final linear displacements.
+                    let location3D = value.convert(value.location3D, from: .local, to: .scene)
+                    let startLocation3D = value.convert(value.startLocation3D, from: .local, to: .scene)
+                    let predictedEndLocation3D = value.convert(value.predictedEndLocation3D, from: .local, to: .scene)
+                    let delta = location3D - startLocation3D
+                    let predictedDelta = predictedEndLocation3D - location3D
+
+                    // Set the final spin value using a spring animation.
+                    withAnimation(.spring) {
+                        yaw = finalSpin(
+                            displacement: Double(delta.x),
+                            predictedDisplacement: Double(predictedDelta.x),
+                            base: baseYaw,
+                            limit: yawLimit)
+                        pitch = finalSpin(
+                            displacement: Double(delta.y),
+                            predictedDisplacement: Double(predictedDelta.y),
+                            base: basePitch,
+                            limit: pitchLimit)
+                    }
+
+                    // Store the last value for use by the next gesture.
+                    baseYaw = yaw
+                    basePitch = pitch
+                }
+            )
+            .onChange(of: axRotateClockwise) {
+                withAnimation(.spring) {
+                    yaw -= (.pi / 6)
+                    baseYaw = yaw
+                }
+            }
+            .onChange(of: axRotateCounterClockwise) {
+                withAnimation(.spring) {
+                    yaw += (.pi / 6)
+                    baseYaw = yaw
+                }
+            }
+    }
+
+    /// Finds the spin for the specified linear displacement, subject to an
+    /// optional limit.
+    private func spin(
+        displacement: Double,
+        base: Double,
+        limit: Angle?
+    ) -> Double {
+        if let limit {
+            return atan(displacement * sensitivity) * (limit.degrees / 90)
+        } else {
+            return base + displacement * sensitivity
+        }
+    }
+
+    /// Finds the final spin given the current and predicted final linear
+    /// displacements, or zero when the spin is restricted.
+    private func finalSpin(
+        displacement: Double,
+        predictedDisplacement: Double,
+        base: Double,
+        limit: Angle?
+    ) -> Double {
+        // If there is a spin limit, always return to zero spin at the end.
+        guard limit == nil else { return 0 }
+
+        // Find the projected final linear displacement, capped at 1 more revolution.
+        let cap = .pi * 2.0 / sensitivity
+        let delta = displacement + max(-cap, min(cap, predictedDisplacement))
+
+        // Find the final spin.
+        return base + delta * sensitivity
+    }
+}
+
+----!@#$----
+World/Globe/GlobeToggle.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A toggle that activates or deactivates the globe volume.
+*/
+
+import SwiftUI
+
+/// A toggle that activates or deactivates the globe volume.
+struct GlobeToggle: View {
+    @Environment(ViewModel.self) private var model
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissWindow) private var dismissWindow
+
+    var body: some View {
+        @Bindable var model = model
+
+        Toggle(Module.globe.callToAction, isOn: $model.isShowingGlobe)
+            .onChange(of: model.isShowingGlobe) { _, isShowing in
+                if isShowing {
+                    openWindow(id: Module.globe.name)
+                } else {
+                    dismissWindow(id: Module.globe.name)
+                }
+            }
+            .toggleStyle(.button)
+    }
+}
+
+#Preview {
+    GlobeToggle()
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/Globe/GlobeControls.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Controls that people can use to manipulate the globe in a volume.
+*/
+
+import SwiftUI
+
+/// Controls that people can use to manipulate the globe in a volume.
+struct GlobeControls: View {
+    @Environment(ViewModel.self) private var model
+    @State private var isTiltPickerVisible: Bool = false
+
+    var body: some View {
+        @Bindable var model = model
+
+        VStack(alignment: .tiltButtonGuide) {
+            GlobeTiltPicker(isVisible: $isTiltPickerVisible)
+                .alignmentGuide(.tiltButtonGuide) { context in
+                    context[HorizontalAlignment.center]
+                }
+                .accessibilitySortPriority(1)
+
+            HStack(spacing: 17) {
+                Toggle(isOn: $model.globeEarth.showSun) {
+                    Label("Sun", systemImage: "sun.max")
+                }
+
+                Toggle(isOn: $model.globeEarth.showPoles) {
+                    Label("Poles", systemImage: "mappin.and.ellipse")
+                }
+
+                Toggle(isOn: $model.isGlobeRotating) {
+                    Label("Rotate", systemImage: "arrow.triangle.2.circlepath")
+                }
+
+                Toggle(isOn: $isTiltPickerVisible) {
+                    Label("Tilt", systemImage: "cloud.sun.fill")
+                }
+                .alignmentGuide(.tiltButtonGuide) { context in
+                    context[HorizontalAlignment.center]
+                }
+            }
+            .toggleStyle(.button)
+            .buttonStyle(.borderless)
+            .labelStyle(.iconOnly)
+            .padding(12)
+            .glassBackgroundEffect(in: .rect(cornerRadius: 50))
+            .alignmentGuide(.controlPanelGuide) { context in
+                context[HorizontalAlignment.center]
+            }
+            .accessibilitySortPriority(2)
+        }
+
+        // Update the date that controls the Earth's tilt.
+        .onChange(of: model.globeTilt) { _, tilt in
+            model.globeEarth.date = tilt.date
+        }
+    }
+}
+
+/// A custom picker for choosing a time of year.
+private struct GlobeTiltPicker: View {
+    @Environment(ViewModel.self) private var model
+    @Binding var isVisible: Bool
+    @AccessibilityFocusState var axFocusTiltMenu: Bool
+
+    var body: some View {
+        Grid(alignment: .leading) {
+            Text("Tilt")
+                .font(.title)
+                .padding(.top, 5)
+                .gridCellAnchor(.center)
+                .accessibilityFocused($axFocusTiltMenu)
+            Divider()
+                .gridCellUnsizedAxes(.horizontal)
+            ForEach(GlobeTilt.allCases) { tilt in
+                GridRow {
+                    Button {
+                        model.globeTilt = tilt
+                        isVisible = false
+                    } label: {
+                        Text(tilt.name)
+                    }
+                    .buttonStyle(.borderless)
+                    .accessibilityAddTraits(tilt == model.globeTilt ? .isSelected : [])
+                    Image(systemName: "checkmark")
+                        .opacity(tilt == model.globeTilt ? 1 : 0)
+                        .accessibility(hidden: true)
+                }
+            }
+        }
+        .padding(12)
+        .glassBackgroundEffect(in: .rect(cornerRadius: 20))
+        .opacity(isVisible ? 1 : 0)
+        .animation(.default.speed(2), value: isVisible)
+        .onChange(of: isVisible) { axFocusTiltMenu = true }
+    }
+}
+
+extension HorizontalAlignment {
+    /// A custom alignment to center the tilt menu over its button.
+    private struct TiltButtonAlignment: AlignmentID {
+        static func defaultValue(in context: ViewDimensions) -> CGFloat {
+            context[HorizontalAlignment.center]
+        }
+    }
+
+    /// A custom alignment guide to center the tilt menu over its button.
+    fileprivate static let tiltButtonGuide = HorizontalAlignment(
+        TiltButtonAlignment.self
+    )
+}
+
+/// A direction to tilt the earth, given as the beginning of a season.
+enum GlobeTilt: String, CaseIterable, Identifiable {
+    case none, march, june, september, december
+    var id: Self { self }
+
+    var date: Date? {
+        let month = switch self {
+        case .none: 0
+        case .march: 3
+        case .june: 6
+        case .september: 9
+        case .december: 12
+        }
+
+        if month == 0 {
+            return nil
+        } else {
+            return Calendar.autoupdatingCurrent.date(from: .init(month: month, day: 21))
+        }
+    }
+
+    var name: String {
+        switch self {
+        case .none: "None"
+        case .march: "March equinox"
+        case .june: "June solstice"
+        case .september: "September equinox"
+        case .december: "December solstice"
+        }
+    }
+}
+
+#Preview {
+    GlobeControls()
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/Globe/GlobeModule.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The module detail content that's specific to the globe module.
+*/
+
+import SwiftUI
+
+/// The module detail content that's specific to the globe module.
+struct GlobeModule: View {
+    var body: some View {
+        Image("GlobeHero")
+            .resizable()
+            .scaledToFit()
+    }
+}
+
+#Preview {
+    GlobeModule()
+        .padding()
+}
+
+----!@#$----
+World/Globe/Globe.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The globe content for a volume.
+*/
+
+import SwiftUI
+
+/// The globe content for a volume.
+struct Globe: View {
+    @Environment(ViewModel.self) private var model
+
+    @State var axRotateClockwise: Bool = false
+    @State var axRotateCounterClockwise: Bool = false
+
+    var body: some View {
+        ZStack(alignment: Alignment(horizontal: .controlPanelGuide, vertical: .bottom)) {
+            Earth(
+                earthConfiguration: model.globeEarth,
+                animateUpdates: true
+            ) { event in
+                if event.key.defaultValue == EarthEntity.AccessibilityActions.rotateCW.name.defaultValue {
+                    axRotateClockwise.toggle()
+                } else if event.key.defaultValue == EarthEntity.AccessibilityActions.rotateCCW.name.defaultValue {
+                    axRotateCounterClockwise.toggle()
+                }
+            }
+            .dragRotation(
+                pitchLimit: .degrees(90),
+                axRotateClockwise: axRotateClockwise,
+                axRotateCounterClockwise: axRotateCounterClockwise)
+            .alignmentGuide(.controlPanelGuide) { context in
+                context[HorizontalAlignment.center]
+            }
+
+            GlobeControls()
+                .offset(y: -70)
+        }
+        .onChange(of: model.isGlobeRotating) { _, isRotating in
+            model.globeEarth.speed = isRotating ? 0.1 : 0
+        }
+        .onDisappear {
+            model.isShowingGlobe = false
+        }
+    }
+}
+
+extension HorizontalAlignment {
+    /// A custom alignment to center the control panel under the globe.
+    private struct ControlPanelAlignment: AlignmentID {
+        static func defaultValue(in context: ViewDimensions) -> CGFloat {
+            context[HorizontalAlignment.center]
+        }
+    }
+
+    /// A custom alignment guide to center the control panel under the globe.
+    static let controlPanelGuide = HorizontalAlignment(
+        ControlPanelAlignment.self
+    )
+}
+
+#Preview {
+    Globe()
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/RealityViews/Earth.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The model of the Earth.
+*/
+
+import SwiftUI
+import RealityKit
+import WorldAssets
+
+/// The model of the Earth.
+struct Earth: View {
+    var earthConfiguration: EarthEntity.Configuration = .init()
+    var satelliteConfiguration: [SatelliteEntity.Configuration] = []
+    var moonConfiguration: SatelliteEntity.Configuration? = nil
+    var animateUpdates: Bool = false
+    var axCustomActionHandler: ((_: AccessibilityEvents.CustomAction) -> Void)? = nil
+
+    /// The Earth entity that the view creates and stores for later updates.
+    @State private var earthEntity: EarthEntity?
+
+    var body: some View {
+        RealityView { content in
+            // Create an earth entity with tilt, rotation, a moon, and so on.
+            let earthEntity = await EarthEntity(
+                configuration: earthConfiguration,
+                satelliteConfiguration: satelliteConfiguration,
+                moonConfiguration: moonConfiguration)
+            content.add(earthEntity)
+
+            // Handle custom accessibility events.
+            if let axCustomActionHandler {
+                _ = content.subscribe(
+                    to: AccessibilityEvents.CustomAction.self,
+                    on: nil,
+                    componentType: nil,
+                    axCustomActionHandler)
+            }
+
+            // Store for later updates.
+            self.earthEntity = earthEntity
+
+        } update: { content in
+            // Reconfigure everything when any configuration changes.
+            earthEntity?.update(
+                configuration: earthConfiguration,
+                satelliteConfiguration: satelliteConfiguration,
+                moonConfiguration: moonConfiguration,
+                animateUpdates: animateUpdates)
+        }
+    }
+}
+
+#Preview {
+    Earth(
+        earthConfiguration: EarthEntity.Configuration.orbitEarthDefault,
+        satelliteConfiguration: [
+            SatelliteEntity.Configuration(
+                name: "Satellite",
+                isVisible: true,
+                inclination: .degrees(30),
+                speedRatio: 10,
+                scale: 1,
+                altitude: 0.4,
+                traceWidth: 400,
+                isTraceVisible: true)
+        ]
+    )
+}
+
+----!@#$----
+World/RealityViews/Starfield.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A large sphere that has an image of the night sky on its inner surface.
+*/
+
+import SwiftUI
+import RealityKit
+
+/// A large sphere that has an image of the night sky on its inner surface.
+///
+/// When centered on the viewer, this entity creates the illusion of floating
+/// in space.
+struct Starfield: View {
+    var body: some View {
+        RealityView { content in
+            // Create a material with a star field on it.
+            guard let resource = try? await TextureResource(named: "Starfield") else {
+                // If the asset isn't available, something is wrong with the app.
+                fatalError("Unable to load starfield texture.")
+            }
+            var material = UnlitMaterial()
+            material.color = .init(texture: .init(resource))
+
+            // Attach the material to a large sphere.
+            let entity = Entity()
+            entity.components.set(ModelComponent(
+                mesh: .generateSphere(radius: 1000),
+                materials: [material]
+            ))
+
+            // Ensure the texture image points inward at the viewer.
+            entity.scale *= .init(x: -1, y: 1, z: 1)
+
+            content.add(entity)
+        }
+    }
+}
+
+----!@#$----
+World/RealityViews/Sun.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The model of the sun.
+*/
+
+import SwiftUI
+import RealityKit
+import WorldAssets
+
+/// A model of the sun.
+struct Sun: View {
+    var scale: Float = 1
+    var position: SIMD3<Float> = .zero
+
+    /// The sun entity that the view creates and stores for later updates.
+    @State private var sun: Entity?
+
+    var body: some View {
+        RealityView { content in
+            guard let sun = await WorldAssets.entity(named: "Sun") else {
+                return
+            }
+
+            content.add(sun)
+            self.sun = sun
+            configure()
+
+        } update: { content in
+            configure()
+        }
+    }
+
+    /// Configures the model based on the current set of inputs.
+    private func configure() {
+        sun?.scale = SIMD3(repeating: scale)
+        sun?.position = position
+    }
+}
+
+#Preview {
+    Sun(scale: 0.1)
+}
+
+----!@#$----
+World/Preview Content/Preview Assets.xcassets/Contents.json
+{
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
+
+----!@#$----
+World/Model/ViewModel.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The stored data for the app.
+*/
+
+import SwiftUI
+
+/// The data that the app uses to configure its views.
+@Observable
+class ViewModel {
+    
+    // MARK: - Navigation
+    var navigationPath: [Module] = []
+    var titleText: String = ""
+    var isTitleFinished: Bool = false
+    var finalTitle: String = "Hello World"
+
+    // MARK: - Globe
+    var isShowingGlobe: Bool = false
+    var globeEarth: EarthEntity.Configuration = .globeEarthDefault
+    var isGlobeRotating: Bool = false
+    var globeTilt: GlobeTilt = .none
+
+    // MARK: - Orbit
+    var isShowingOrbit: Bool = false
+    var orbitEarth: EarthEntity.Configuration = .orbitEarthDefault
+    var orbitSatellite: SatelliteEntity.Configuration = .orbitSatelliteDefault
+    var orbitMoon: SatelliteEntity.Configuration = .orbitMoonDefault
+
+    // MARK: - Solar System
+    var isShowingSolar: Bool = false
+    var solarEarth: EarthEntity.Configuration = .solarEarthDefault
+    var solarSatellite: SatelliteEntity.Configuration = .solarTelescopeDefault
+    var solarMoon: SatelliteEntity.Configuration = .solarMoonDefault
+
+    var solarSunDistance: Double = 700
+    var solarSunPosition: SIMD3<Float> {
+        [Float(solarSunDistance * sin(solarEarth.sunAngle.radians)),
+         0,
+         Float(solarSunDistance * cos(solarEarth.sunAngle.radians))]
+    }
+}
+
+----!@#$----
+World/Model/Module.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The modules that the app can present.
+*/
+
+
+import Foundation
+
+/// A description of the modules that the app can present.
+enum Module: String, Identifiable, CaseIterable, Equatable {
+    case globe, orbit, solar
+    var id: Self { self }
+    var name: String { rawValue.capitalized }
+
+    var eyebrow: String {
+        switch self {
+        case .globe:
+            "A Day in the Life"
+        case .orbit:
+            "Our Nearby Neighbors"
+        case .solar:
+            "Soaring Through Space"
+        }
+    }
+
+    var heading: String {
+        switch self {
+        case .globe:
+            "Planet Earth"
+        case .orbit:
+            "Objects in Orbit"
+        case .solar:
+            "The Solar System"
+        }
+    }
+
+    var abstract: String {
+        switch self {
+        case .globe:
+            "A lot goes into making a day happen on Planet Earth! Discover how our globe turns and tilts to give us hot summer days, chilly autumn nights, and more."
+        case .orbit:
+            "Get up close with different types of orbits to learn more about how satellites and other objects move in space relative to the Earth."
+        case .solar:
+            "Take a trip to the solar system and watch how the Earth, Moon, and its satellites are in constant motion rotating around the Sun."
+        }
+    }
+
+    var overview: String {
+        switch self {
+        case .globe:
+            "You can’t feel it, but Earth is constantly in motion. All planets spin on an invisible axis: ours makes one full turn every 24 hours, bringing days and nights to our home.\n\nWhen your part of the world faces the Sun, it’s daytime; when it rotates away, we move into night. When you see a sunrise or sunset, you’re witnessing the Earth in motion.\n\nWant to explore Earth’s rotation and axial tilt? Check out our interactive 3D globe and be hands-on with Earth’s movements."
+        case .orbit:
+            "The Moon orbits the Earth in an elliptical orbit. It’s the most visible object in our sky, but it’s farther from us than you might think: on average, it's about 385,000 kilometers away!\n\nMost satellites orbit Earth in a tighter orbit — some only a few hundred miles above Earth’s surface. Satellites in lower orbits circle us faster: the Hubble Telescope is approximately 534 kilometers from Earth and completes almost 15 orbits in a day, while geostationary satellites circle Earth just once in 24 hours from about 36,000 kilometers away.\n\nGet up close with different types of orbits to learn how these objects move in space relative to Earth."
+        case .solar:
+            "Every 365¼ days, Earth and its satellites completely orbit the Sun — the star that anchors our solar system. It’s a journey of about 940 million kilometers a year!\n\nOn its journey, the Earth moves counter-clockwise in a slightly elliptical orbit. It travels a path called the ecliptic plane — an important part of how we navigate through our solar system.\n\nWant to explore Earth’s orbit in detail? Take a trip to the solar system and watch how Earth and its satellites move around the Sun."
+        }
+    }
+
+    var callToAction: String {
+        switch self {
+        case .globe: "View Globe"
+        case .orbit: "View Orbits"
+        case .solar: "View Outer Space"
+        }
+    }
+
+    static let funFacts = [
+        "The Earth orbits the Sun on an invisible path called the ecliptic plane.",
+        "All planets in the solar system orbit within 3°–7° of this plane.",
+        "As the Earth orbits the Sun, its axial tilt exposes one hemisphere to more sunlight for half of the year.",
+        "Earth's axial tilt is why different hemispheres experience different seasons."
+    ]
+}
+
+----!@#$----
+World/Solar System/SolarSystemToggle.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A toggle that activates or deactivates the solar system scene.
+*/
+
+import SwiftUI
+
+/// A toggle that activates or deactivates the solar system scene.
+struct SolarSystemToggle: View {
+    @Environment(ViewModel.self) private var model
+    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
+
+    var body: some View {
+        Button {
+            Task {
+                if model.isShowingSolar {
+                    await dismissImmersiveSpace()
+                } else {
+                    await openImmersiveSpace(id: Module.solar.name)
+                }
+            }
+        } label: {
+            if model.isShowingSolar {
+                Label(
+                    "Exit the Solar System",
+                    systemImage: "arrow.down.right.and.arrow.up.left")
+            } else {
+                Text(Module.solar.callToAction)
+            }
+        }
+    }
+}
+
+#Preview {
+    SolarSystemToggle()
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/Solar System/SolarSystemModule.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The module detail content that's specific to the solar system module.
+*/
+
+import SwiftUI
+
+/// The module detail content that's specific to the solar system module.
+struct SolarSystemModule: View {
+    var body: some View {
+        Image("SolarHero")
+            .resizable()
+            .scaledToFit()
+    }
+}
+
+#Preview {
+    SolarSystemModule()
+        .padding()
+}
+
+----!@#$----
+World/Solar System/SolarSystem.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The model content for the solar system module.
+*/
+
+import SwiftUI
+import RealityKit
+
+/// The model content for the solar system module.
+struct SolarSystem: View {
+    @Environment(ViewModel.self) private var model
+
+    var body: some View {
+        ZStack {
+            Earth(
+                earthConfiguration: model.solarEarth,
+                satelliteConfiguration: [model.solarSatellite],
+                moonConfiguration: model.solarMoon
+            )
+
+            Sun(
+                scale: 50,
+                position: model.solarSunPosition
+            )
+            
+            Starfield()
+        }
+        .onAppear {
+            model.isShowingSolar = true
+            var announcement = AttributedString("Entered the immersive star filled solar system!")
+            announcement.accessibilitySpeechAnnouncementPriority = .high
+            AccessibilityNotification.Announcement(announcement).post()
+        }
+        .onDisappear {
+            model.isShowingSolar = false
+        }
+    }
+}
+
+----!@#$----
+World/Solar System/SolarSystemControls.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The control panel to display along with the solar system view.
+*/
+
+import SwiftUI
+
+/// The control panel to display along with the solar system view.
+struct SolarSystemControls: View {
+    @Environment(ViewModel.self) private var model
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var factCount = 0
+
+    var body: some View {
+        VStack {
+            Spacer()
+
+            VStack {
+                HStack {
+                    Button {
+                        withAnimation { factCount -= 1 }
+                    } label: {
+                        Label("Previous", systemImage: "chevron.left")
+                    }
+                    .disabled(factCount == 0)
+                    .padding()
+
+                    Spacer()
+
+                    Text("The Solar System")
+                        .font(.title)
+
+                    Spacer()
+
+                    Button {
+                        withAnimation { factCount += 1 }
+                    } label: {
+                        Label("Next", systemImage: "chevron.right")
+                    }
+                    .disabled(factCount == Module.funFacts.count - 1)
+                    .padding()
+                }
+                .labelStyle(.iconOnly)
+
+                ZStack {
+                    ForEach(Module.funFacts, id: \.self) { fact in
+                        Text(fact)
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal)
+                            .opacity(fact == Module.funFacts[factCount] ? 1 : 0)
+                    }
+                }
+                .animation(.default, value: factCount)
+
+                Divider()
+                    .padding()
+
+                SolarSystemToggle()
+                    .buttonStyle(.borderless)
+                    .padding(.bottom)
+
+                if reduceMotion {
+                    HStack {
+                        Spacer()
+
+                        Button {
+                            model.solarEarth.isPaused.toggle()
+                        } label: {
+                            Label(
+                                model.solarEarth.isPaused ? "Play" : "Pause",
+                                systemImage: model.solarEarth.isPaused ? "play.fill" : "pause.fill")
+                        }
+                        .overlay {
+                            Circle().stroke()
+                        }
+                        .padding([.trailing, .bottom])
+                        .buttonStyle(.borderless)
+                        .labelStyle(.iconOnly)
+                        .help(model.solarEarth.isPaused ? "Start motion" : "Stop motion")
+                    }
+                }
+            }
+            .frame(width: 500)
+            .glassBackgroundEffect(in: .rect(cornerRadius: 40))
+            .onAppear {
+                model.solarEarth.isPaused = reduceMotion
+            }
+            .onChange(of: reduceMotion) { _, reduceMotion in
+                model.solarEarth.isPaused = reduceMotion
+            }
+        }
+    }
+}
+
+#Preview {
+    SolarSystemControls()
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/Systems/TraceSystem.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A system and component for drawing traces behind satellites.
+*/
+
+import Foundation
+import RealityKit
+
+/// Trace information for an entity.
+struct TraceComponent: Component {
+    var accumulatedTime: TimeInterval = 0
+    var mesh: TraceMesh
+    var isPaused: Bool = false
+
+    weak var anchor: Entity?
+    var model: ModelEntity?
+
+    init(anchor: Entity, width: Float) {
+        self.anchor = anchor
+        self.mesh = TraceMesh(width: width)
+    }
+}
+
+/// A system that draws a trace behind moving entities that have
+/// a trace component.
+struct TraceSystem: System {
+    static let query = EntityQuery(where: .has(TraceComponent.self))
+
+    init(scene: Scene) { }
+
+    func update(context: SceneUpdateContext) {
+        for satellite in context.entities(matching: Self.query, updatingSystemWhen: .rendering) {
+            var trace: TraceComponent = satellite.components[TraceComponent.self]!
+            defer { satellite.components[TraceComponent.self] = trace }
+
+            guard let anchor = trace.anchor else { return }
+
+            trace.accumulatedTime += context.deltaTime
+            if trace.isPaused || trace.accumulatedTime <= 0.025 { return }
+            trace.accumulatedTime = 0
+
+            // Store the satellite's current position in the anchor's
+            // coordinate system.
+            trace.mesh.addPosition(of: satellite, relativeTo: anchor)
+
+            let contents = trace.mesh.meshContents
+
+            // Update the existing trace mesh or create a new one.
+            do {
+                if let model = trace.model {
+                    try model.model?.mesh.replace(with: contents)
+                } else {
+                    let model = try ModelEntity.makeTraceModel(with: contents)
+                    model.name = "\(anchor.name)-trace"
+                    trace.model = model
+                    anchor.addChild(model)
+                }
+            } catch {
+                print("Failed to create or update trace mesh.")
+            }
+        }
+    }
+}
+
+struct TraceMesh {
+    var positions: [SIMD3<Float>] = []
+    var uvs: [SIMD2<Float>] = []
+    var width: Float = 5
+    static let maxIndexCount: UInt32 = 400
+    static let triangleIndices = Self.generateIndices()
+
+    init(width: Float) {
+        self.width = width
+    }
+}
+
+extension TraceMesh {
+    mutating func addPosition(of entity: Entity, relativeTo referenceEntity: Entity) {
+        let width = self.width / 1e5
+        positions.append(entity.convert(position: entity.position - [0, width, 0],
+                                        to: referenceEntity))
+        positions.append(entity.convert(position: entity.position + [0, width, 0],
+                                        to: referenceEntity))
+        uvs.removeAll(keepingCapacity: true)
+        var updatedPositions = [SIMD3<Float>]()
+        let rowCount = positions.count
+        
+        _ = stride(from: 0, to: positions.endIndex, by: 2).map { row in
+            let leftPosition = positions[row]
+            let rightPosition = positions[row + 1]
+            let fractionalValue = Float(row) / Float(rowCount)
+           
+            uvs.append([fractionalValue, 0])
+            uvs.append([fractionalValue, 1])
+
+            let center = (rightPosition + leftPosition) / 2
+            let directionVector = simd_normalize(rightPosition - leftPosition)
+            updatedPositions.append(center - (directionVector) * (fractionalValue * 0.004))
+            updatedPositions.append(center + (directionVector) * (fractionalValue * 0.004))
+        }
+        positions = updatedPositions
+        
+        // Limit the trace length.
+        if positions.count > Self.maxIndexCount {
+            positions.removeFirst(2)
+            uvs.removeFirst(2)
+        }
+    }
+
+    static func generateIndices() -> [UInt32] {
+        var indices: [UInt32] = []
+        for index in 0 ..< maxIndexCount {
+            indices.append(contentsOf: [index, index + 1, index + 2])
+            indices.append(contentsOf: [index + 2, index + 1, index])
+        }
+        return indices
+    }
+}
+
+extension TraceMesh {
+    var meshContents: MeshResource.Contents {
+        var meshPart = MeshResource.Part(id: "TracePart", materialIndex: 0)
+        // Set up the part and contents using the positions and precalculated indices.
+        meshPart.positions = .init(positions)
+        meshPart.textureCoordinates = .init(uvs)
+        meshPart.triangleIndices = .init(Self.triangleIndices.prefix((positions.count - 2) * 6))
+
+        var contents = MeshResource.Contents()
+        contents.models = [.init(id: "Trace", parts: [meshPart])]
+        return contents
+    }
+}
+
+extension ModelEntity {
+    static func makeTraceModel(with contents: MeshResource.Contents) throws -> ModelEntity {
+        guard let traceResource = try? TextureResource.load(named: "TrailGradient") else {
+            fatalError("Unable to load trace texture.")
+        }
+        let traceMap = MaterialParameters.Texture(traceResource)
+        var material = UnlitMaterial(color: .white)
+        material.opacityThreshold = 0
+        material.blending = .transparent(opacity: .init(texture: traceMap))
+       
+        return ModelEntity(mesh: try .generate(from: contents),
+                           materials: [material])
+    }
+}
+
+----!@#$----
+World/Systems/RotationSystem.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A system and component for creating entity rotation.
+*/
+
+import SwiftUI
+import RealityKit
+
+/// Rotation information for an entity.
+struct RotationComponent: Component {
+    var speed: Float
+    var axis: SIMD3<Float>
+
+    init(speed: Float = 1.0, axis: SIMD3<Float> = [0, 1, 0]) {
+        self.speed = speed
+        self.axis = axis
+    }
+}
+
+/// A system that rotates entities with a rotation component.
+struct RotationSystem: System {
+    static let query = EntityQuery(where: .has(RotationComponent.self))
+
+    init(scene: RealityKit.Scene) {}
+
+    func update(context: SceneUpdateContext) {
+        for entity in context.entities(matching: Self.query, updatingSystemWhen: .rendering) {
+            guard let component: RotationComponent = entity.components[RotationComponent.self] else { continue }
+            entity.setOrientation(.init(angle: component.speed * Float(context.deltaTime), axis: component.axis), relativeTo: entity)
+        }
+    }
+}
+
+
+----!@#$----
+World/Modules/ModuleDetail.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A detail view that presents information about different module types.
+*/
+
+import SwiftUI
+
+/// A detail view that presents information about different module types.
+struct ModuleDetail: View {
+    @Environment(ViewModel.self) private var model
+
+    var module: Module
+
+    var body: some View {
+        @Bindable var model = model
+
+        GeometryReader { proxy in
+            let textWidth = min(max(proxy.size.width * 0.4, 300), 500)
+            let imageWidth = min(max(proxy.size.width - textWidth, 300), 700)
+            ZStack {
+                HStack(spacing: 60) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(module.heading)
+                            .font(.system(size: 50, weight: .bold))
+                            .padding(.bottom, 15)
+                            .accessibilitySortPriority(4)
+
+                        Text(module.overview)
+                            .padding(.bottom, 30)
+                            .accessibilitySortPriority(3)
+
+                        switch module {
+                        case .globe:
+                            GlobeToggle()
+                        case .orbit:
+                            OrbitToggle()
+                                .accessibilitySortPriority(2)
+                        case .solar:
+                            SolarSystemToggle()
+                        }
+                    }
+                    .frame(width: textWidth, alignment: .leading)
+
+                    module.detailView
+                        .frame(width: imageWidth, alignment: .center)
+                }
+                .offset(y: -30)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .padding(70)
+        .background {
+            if module == .solar {
+                Image("SolarBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .accessibility(hidden: true)
+            }
+        }
+
+        // A settings button in an ornament,
+        // visible only when `showDebugSettings` is true.
+        .settingsButton(module: module)
+   }
+}
+
+extension Module {
+    @ViewBuilder
+    fileprivate var detailView: some View {
+        switch self {
+        case .globe: GlobeModule()
+        case .orbit: OrbitModule()
+        case .solar: SolarSystemModule()
+        }
+    }
+}
+
+#Preview("Globe") {
+    NavigationStack {
+        ModuleDetail(module: .globe)
+            .environment(ViewModel())
+    }
+}
+
+#Preview("Orbit") {
+    NavigationStack {
+        ModuleDetail(module: .orbit)
+            .environment(ViewModel())
+    }
+}
+
+#Preview("Solar System") {
+    NavigationStack {
+        ModuleDetail(module: .solar)
+            .environment(ViewModel())
+    }
+}
+
+----!@#$----
+World/Modules/Modules.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The top level navigation stack for the app.
+*/
+
+import SwiftUI
+
+/// The top level navigation stack for the app.
+struct Modules: View {
+    @Environment(ViewModel.self) private var model
+
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissWindow) private var dismissWindow
+    @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
+
+    var body: some View {
+        @Bindable var model = model
+
+        ZStack {
+            // Controls visible only when showing the solar system view.
+            SolarSystemControls()
+                .opacity(model.isShowingSolar ? 1 : 0)
+
+            // The main navigation element for the app.
+            NavigationStack(path: $model.navigationPath) {
+                TableOfContents()
+                    .navigationDestination(for: Module.self) { module in
+                        ModuleDetail(module: module)
+                            .navigationTitle(module.eyebrow)
+                    }
+            }
+            .opacity(model.isShowingSolar ? 0 : 1)
+        }
+        .animation(.default, value: model.isShowingSolar)
+
+        // Close any open detail view when returning to the table of contents.
+        .onChange(of: model.navigationPath) { _, path in
+            if path.isEmpty {
+                if model.isShowingGlobe {
+                    dismissWindow(id: Module.globe.name)
+                }
+                if model.isShowingOrbit || model.isShowingSolar {
+                    Task {
+                        await dismissImmersiveSpace()
+                    }
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    Modules()
+        .environment(ViewModel())
+}
+
+----!@#$----
+World/Modules/TableOfContents.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+The launching point for the app's modules.
+*/
+
+import SwiftUI
+
+/// The launching point for the app's modules.
+struct TableOfContents: View {
+    @Environment(ViewModel.self) private var model
+
+    var body: some View {
+        @Bindable var model = model
+        
+        VStack {
+            Image("SunSliver")
+                .opacity(model.isTitleFinished ? 1 : 0)
+                .accessibility(hidden: true)
+
+            Spacer(minLength: 120)
+
+            VStack {
+                // A hidden version of the final text keeps the layout fixed
+                // while the overlaid visible version types on.
+                TitleText(title: model.finalTitle)
+                    .padding(.horizontal, 70)
+                    .hidden()
+                    .overlay(alignment: .leading) {
+                        TitleText(title: model.titleText)
+                            .padding(.leading, 70)
+                    }
+                Text("Discover a new way of looking at the world.")
+                    .font(.title)
+                    .opacity(model.isTitleFinished ? 1 : 0)
+            }
+            .alignmentGuide(.earthGuide) { context in
+                context[VerticalAlignment.top]
+            }
+            .padding(.bottom, 40)
+
+            HStack(alignment: .top, spacing: 30) {
+                ForEach(Module.allCases) {
+                    ModuleCard(module: $0)
+                }
+            }
+            .padding(.bottom, 50)
+            .opacity(model.isTitleFinished ? 1 : 0)
+
+            Spacer()
+        }
+        .padding(.horizontal, 50)
+        .typeText(
+            text: $model.titleText,
+            finalText: model.finalTitle,
+            isFinished: $model.isTitleFinished,
+            isAnimated: !model.isTitleFinished)
+        .background(alignment: Alignment(horizontal: .center, vertical: .earthGuide)) {
+            Image("EarthHalf")
+                .alignmentGuide(.earthGuide) { context in
+                    context[VerticalAlignment.top] + 100
+                }
+                .opacity(model.isTitleFinished ? 1 : 0)
+                .accessibility(hidden: true)
+        }
+        .animation(.default.speed(0.25), value: model.isTitleFinished)
+    }
+}
+
+/// The text that displays the app's title.
+private struct TitleText: View {
+    var title: String
+    var body: some View {
+        Text(title)
+            .monospaced()
+            .font(.system(size: 50, weight: .bold))
+    }
+}
+
+extension VerticalAlignment {
+    /// A custom alignment that pins the background image to the title.
+    private struct EarthAlignment: AlignmentID {
+        static func defaultValue(in context: ViewDimensions) -> CGFloat {
+            context[VerticalAlignment.top]
+        }
+    }
+
+    /// A custom alignment guide that pins the background image to the title.
+    fileprivate static let earthGuide = VerticalAlignment(
+        EarthAlignment.self
+    )
+}
+
+#Preview {
+    NavigationStack {
+        TableOfContents()
+            .environment(ViewModel())
+    }
+}
+
+----!@#$----
+World/Modules/ModuleCard.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A card that displays a navigation destination.
+*/
+
+import SwiftUI
+
+/// A card that displays a navigation destination.
+struct ModuleCard: View {
+    var module: Module
+
+    var body: some View {
+        NavigationLink(value: module) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(module.eyebrow)
+                    .font(.callout)
+                    .bold()
+                    .foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(module.heading)
+                        .font(.largeTitle)
+                    Text(module.abstract)
+                }
+            }
+            .padding(.vertical, 30)
+        }
+        .buttonStyle(.borderless)
+        .buttonBorderShape(.roundedRectangle(radius: 20))
+        .frame(minWidth: 200, maxWidth: 355)
+    }
+}
+
+#Preview {
+    HStack {
+        ModuleCard(module: .globe)
+        ModuleCard(module: .orbit)
+        ModuleCard(module: .solar)
+    }
+    .padding()
+    .glassBackgroundEffect()
+}
+
+----!@#$----
+World/Entities/Entity+Trace.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Convenience methods for drawing a trace behind a satellite.
+*/
+
+import SwiftUI
+import RealityKit
+
+extension Entity {
+    /// Resets all the elements of a trace.
+    func resetTrace(recursive: Bool = false) {
+        if var trace: TraceComponent = components[TraceComponent.self] {
+            trace.mesh.positions.removeAll()
+            trace.model?.removeFromParent()
+            trace.model = nil
+            self.components[TraceComponent.self] = trace
+        }
+        if recursive {
+            for child in children {
+                child.resetTrace(recursive: recursive)
+            }
+        }
+    }
+
+    /// Updates the configuration of a trace.
+    func updateTrace(
+        anchor: Entity,
+        width: Float,
+        isVisible: Bool,
+        isPaused: Bool
+    ) {
+        if isVisible {
+            if !components.has(TraceComponent.self) {
+                components.set(TraceComponent(anchor: anchor, width: width))
+            } else if var trace: TraceComponent = components[TraceComponent.self] {
+                trace.isPaused = isPaused
+                trace.mesh.width = width
+                components[TraceComponent.self] = trace
+            }
+        } else {
+            if let trace: TraceComponent = components[TraceComponent.self] {
+                trace.model?.removeFromParent()
+            }
+            components[TraceComponent.self] = nil
+        }
+    }
+}
+
+----!@#$----
+World/Entities/EarthEntity+Configuration.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Configuration information for Earth entities.
+*/
+
+import SwiftUI
+
+extension EarthEntity {
+    /// Configuration information for Earth entities.
+    struct Configuration {
+        var isCloudy: Bool = false
+
+        var scale: Float = 0.6
+        var rotation: simd_quatf = .init(angle: 0, axis: [0, 1, 0])
+        var speed: Float = 0
+        var isPaused: Bool = false
+        var position: SIMD3<Float> = .zero
+        var date: Date? = nil
+
+        var showPoles: Bool = false
+        var poleLength: Float = 0.875
+        var poleThickness: Float = 0.75
+
+        var showSun: Bool = true
+        var sunIntensity: Float = 14
+        var sunAngle: Angle = .degrees(280)
+
+        var axActions: [LocalizedStringResource] = []
+        var axDescribeTilt: Bool = false
+
+        var currentSpeed: Float {
+            isPaused ? 0 : speed
+        }
+
+        var currentSunIntensity: Float? {
+            showSun ? sunIntensity : nil
+        }
+
+        static var globeEarthDefault: Configuration = .init(
+            axActions: AccessibilityActions.rotate,
+            axDescribeTilt: true
+        )
+
+        static var orbitEarthDefault: Configuration = .init(
+            scale: 0.4,
+            speed: 0.1,
+            date: Date(),
+            axActions: AccessibilityActions.zoom)
+
+        static var solarEarthDefault: Configuration = .init(
+            isCloudy: true,
+            scale: 4.6,
+            speed: 0.045,
+            position: [-2, 0.4, -5],
+            date: Date())
+    }
+
+    /// Custom actions available to people using assistive technologies.
+    enum AccessibilityActions {
+        case zoomIn, zoomOut, rotateCW, rotateCCW
+
+        /// The name of the action that VoiceOver reads aloud.
+        var name: LocalizedStringResource {
+            switch self {
+            case .zoomIn: "Zoom in"
+            case .zoomOut: "Zoom out"
+            case .rotateCW: "Rotate clockwise"
+            case .rotateCCW: "Rotate counterclockwise"
+            }
+        }
+
+        /// The collection of zoom actions.
+        static var zoom: [LocalizedStringResource] {
+            [zoomIn.name, zoomOut.name]
+        }
+
+        /// The collection of rotation actions.
+        static var rotate: [LocalizedStringResource] {
+            [rotateCW.name, rotateCCW.name]
+        }
+    }
+}
+
+
+----!@#$----
+World/Entities/SatelliteEntity.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A satellite entity.
+*/
+
+import RealityKit
+import SwiftUI
+import WorldAssets
+
+/// A satellite entity.
+class SatelliteEntity: Entity {
+    
+    // MARK: - Sub-entities
+
+    private var satellite = Entity()
+    private let box = Entity()
+    private let orbit = Entity()
+
+    // MARK: - Initializers
+
+    @MainActor required init() {
+        super.init()
+    }
+
+    init(_ configuration: Configuration) async {
+        super.init()
+
+        // Load the satellite model.
+        guard let satellite = await WorldAssets.entity(named: configuration.name) else {
+            return
+        }
+        self.satellite = satellite
+
+        // An entity whose orientation controls the inclination of the orbit.
+        name = configuration.name
+        isEnabled = configuration.isVisible
+
+        // The entity that creates the satellite's orbit using a rotation component.
+        orbit.components.set(RotationComponent(speed: 0))
+        orbit.orientation = .init(angle: Float(configuration.initialRotation.radians), axis: [0, 1, 0])
+        self.addChild(orbit)
+
+        // A container for the satellite that can be scaled and
+        // positioned without interfering with the trace.
+        orbit.addChild(box)
+
+        // The satellite model that draws an optional trace.
+        box.addChild(satellite)
+    }
+    
+    func update(
+        configuration: Configuration,
+        speed: Float,
+        traceAnchor: Entity
+    ) {
+        var resetTrace = !configuration.isTraceVisible
+
+        let newOrientation = simd_quatf(angle: Float(configuration.inclination.radians), axis: [0, 0, 1])
+        if newOrientation != self.orientation {
+            resetTrace = true
+        }
+        orientation = newOrientation
+        isEnabled = configuration.isVisible
+
+        if var rotation: RotationComponent = orbit.components[RotationComponent.self] {
+            rotation.speed = configuration.speedRatio * speed
+            orbit.components[RotationComponent.self] = rotation
+        }
+
+        box.scale = SIMD3(repeating: configuration.scale)
+        box.position = [0, 0, configuration.altitude]
+
+        satellite.updateTrace(
+            anchor: traceAnchor,
+            width: configuration.traceWidth,
+            isVisible: configuration.isTraceVisible,
+            isPaused: (configuration.speedRatio * speed) == 0)
+        if resetTrace {
+            satellite.resetTrace()
+        }
+    }
+}
+
+
+----!@#$----
+World/Entities/Entity+Sunlight.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Sunlight supplied through an image-based light.
+*/
+
+import SwiftUI
+import RealityKit
+
+extension Entity {
+    /// Adds an image-based light that emulates sunlight.
+    ///
+    /// This method assumes that the project contains a folder called
+    /// `Sunlight.skybox` that contains an image of a white dot on a black
+    /// background. The position of the dot in the image dictates the direction
+    /// from which the sunlight appears to originate. Use a small dot
+    /// to maximize the point-like nature of the light source.
+    ///
+    /// Tune the intensity parameter to get the brightness that you need.
+    /// Set the intensity to `nil` to remove the image-based light (IBL)
+    /// from the entity.
+    ///
+    /// - Parameter intensity: The strength of the sunlight. Tune
+    ///   this value to get the brightness you want. Set a value of `nil` to
+    ///   remove the image based light from the entity.
+    func setSunlight(intensity: Float?) {
+        if let intensity {
+            Task {
+                guard let resource = try? await EnvironmentResource(named: "Sunlight") else { return }
+                var iblComponent = ImageBasedLightComponent(
+                    source: .single(resource),
+                    intensityExponent: intensity)
+
+                // Ensure that the light rotates with its entity. Omit this line
+                // for a light that remains fixed relative to the surroundings.
+                iblComponent.inheritsRotation = true
+
+                components.set(iblComponent)
+                components.set(ImageBasedLightReceiverComponent(imageBasedLight: self))
+            }
+        } else {
+            components.remove(ImageBasedLightComponent.self)
+            components.remove(ImageBasedLightReceiverComponent.self)
+        }
+    }
+}
+
+----!@#$----
+World/Entities/EarthEntity.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+An entity that represents the Earth and all its moving parts.
+*/
+
+import RealityKit
+import SwiftUI
+import WorldAssets
+
+/// An entity that represents the Earth and all its moving parts.
+class EarthEntity: Entity {
+
+    // MARK: - Sub-entities
+
+    /// The model that draws the Earth's surface features.
+    private var earth: Entity = Entity()
+
+    /// An entity that rotates 23.5° to create axial tilt.
+    private let equatorialPlane = Entity()
+
+    /// An entity that provides a configurable rotation,
+    /// separate from the day/night cycle.
+    private let rotator = Entity()
+
+    /// A physical representation of the Earth's north and south poles.
+    private var pole: Entity = Entity()
+
+    /// The Earth's one natural satellite.
+    private var moon: SatelliteEntity = SatelliteEntity()
+
+    /// A container for artificial satellites.
+    private let satellites = Entity()
+
+    // MARK: - Internal state
+
+    /// Keep track of solar intensity and only update when it changes.
+    private var currentSunIntensity: Float? = nil
+
+    // MARK: - Initializers
+
+    /// Creates a new blank earth entity.
+    @MainActor required init() {
+        super.init()
+    }
+
+    /// Creates a new earth entity with the specified configuration.
+    ///
+    /// - Parameters:
+    ///   - configuration: Information about how to configure the Earth.
+    ///   - satelliteConfiguration: An array of configuration structures, one
+    ///     for each artificial satellite. The initializer creates one
+    ///     satellite model for each element of the array. Pass an empty
+    ///     array to avoid creating any artificial satellites.
+    ///   - moonConfiguration: A satellite configuration structure that's
+    ///     specifically for the Moon. Set to `nil` to avoid creating a
+    ///     Moon entity.
+    init(
+        configuration: Configuration,
+        satelliteConfiguration: [SatelliteEntity.Configuration],
+        moonConfiguration: SatelliteEntity.Configuration?
+    ) async {
+        super.init()
+
+        // Load the earth and pole models.
+        guard let earth = await WorldAssets.entity(named: configuration.isCloudy ? "Earth" : "Globe"),
+              let pole = await WorldAssets.entity(named: "Pole") else { return }
+        self.earth = earth
+        self.pole = pole
+
+        // Create satellites.
+        for configuration in satelliteConfiguration {
+            await satellites.addChild(SatelliteEntity(configuration))
+        }
+
+        // Attach to the Earth to a set of entities that enable axial
+        // tilt and a configured amount of rotation around the axis.
+        self.addChild(equatorialPlane)
+        equatorialPlane.addChild(rotator)
+        rotator.addChild(earth)
+
+        // Attach the pole to the Earth to ensure that it
+        // moves, tilts, rotates, and scales with the Earth.
+        earth.addChild(pole)
+
+        // The Moon's orbit isn't affected by the tilt of the Earth, so attach
+        // the Moon to the root entity.
+        moon = await SatelliteEntity(.orbitMoonDefault)
+        self.addChild(moon)
+
+        // The inclination of artificial satellite orbits is measured relative
+        // to the Earth's equator, so attach the satellite container to the
+        // equatorial plane entity.
+        equatorialPlane.addChild(satellites)
+
+        // Configure everything for the first time.
+        update(
+            configuration: configuration,
+            satelliteConfiguration: satelliteConfiguration,
+            moonConfiguration: moonConfiguration,
+            animateUpdates: false)
+    }
+
+    // MARK: - Updates
+
+    /// Updates all the entity's configurable elements.
+    ///
+    /// - Parameters:
+    ///   - configuration: Information about how to configure the Earth.
+    ///   - satelliteConfiguration: An array of configuration structures, one
+    ///     for each artificial satellite.
+    ///   - moonConfiguration: A satellite configuration structure that's
+    ///     specifically for the Moon.
+    ///   - animateUpdates: A Boolean that indicates whether changes to certain
+    ///     configuration values should be animated.
+    func update(
+        configuration: Configuration,
+        satelliteConfiguration: [SatelliteEntity.Configuration],
+        moonConfiguration: SatelliteEntity.Configuration?,
+        animateUpdates: Bool
+    ) {
+        // Indicate the position of the sun for use in turning the ground
+        // lights on and off.
+        earth.sunPositionComponent = SunPositionComponent(Float(configuration.sunAngle.radians))
+        
+        // Set a static rotation of the tilted Earth, driven from the configuration.
+        rotator.orientation = configuration.rotation
+
+        // Set the speed of the Earth's automatic rotation on it's axis.
+        if var rotation: RotationComponent = earth.components[RotationComponent.self] {
+            rotation.speed = configuration.currentSpeed
+            earth.components[RotationComponent.self] = rotation
+        } else {
+            earth.components.set(RotationComponent(speed: configuration.currentSpeed))
+        }
+
+        // Update the Moon.
+        moon.update(
+            configuration: moonConfiguration ?? .disabledMoon,
+            speed: configuration.currentSpeed,
+            traceAnchor: self)
+
+        // Update the artificial satellites.
+        for satellite in satellites.children {
+            guard let satelliteConfiguration = satelliteConfiguration.first(where: { $0.name == satellite.name }) else { continue }
+            (satellite as? SatelliteEntity)?.update(
+                configuration: satelliteConfiguration,
+                speed: configuration.currentSpeed,
+                traceAnchor: earth)
+        }
+
+        // Configure the poles.
+        pole.isEnabled = configuration.showPoles
+        pole.scale = [
+            configuration.poleThickness,
+            configuration.poleLength,
+            configuration.poleThickness]
+
+        // Set the sunlight, if corresponding controls have changed.
+        if configuration.currentSunIntensity != currentSunIntensity {
+            setSunlight(intensity: configuration.currentSunIntensity)
+            currentSunIntensity = configuration.currentSunIntensity
+        }
+
+        // Tilt the axis according to a date. For this to be meaningful,
+        // locate the sun along the positive x-axis. Animate this move for
+        // changes that the user makes when the globe appears in the volume.
+        var planeTransform = equatorialPlane.transform
+        planeTransform.rotation = tilt(date: configuration.date)
+        if animateUpdates {
+            equatorialPlane.move(to: planeTransform, relativeTo: self, duration: 0.25)
+        } else {
+            equatorialPlane.move(to: planeTransform, relativeTo: self)
+        }
+
+        // Scale and position the entire entity.
+        move(
+            to: Transform(
+                scale: SIMD3(repeating: configuration.scale),
+                rotation: orientation,
+                translation: configuration.position),
+            relativeTo: parent)
+
+        // Set an accessibility component on the entity.
+        components.set(makeAxComponent(
+            configuration: configuration,
+            satelliteConfiguration: satelliteConfiguration,
+            moonConfiguration: moonConfiguration))
+    }
+
+    /// Create an accessibility component suitable for the Earth entity.
+    ///
+    /// - Parameters:
+    ///   - configuration: Information about how to configure the Earth.
+    ///   - satelliteConfiguration: An array of configuration structures, one
+    ///     for each artificial satellite.
+    ///   - moonConfiguration: A satellite configuration structure that's
+    ///     specifically for the Moon.
+    /// - Returns: A new accessibility component.
+    private func makeAxComponent(
+        configuration: Configuration,
+        satelliteConfiguration: [SatelliteEntity.Configuration],
+        moonConfiguration: SatelliteEntity.Configuration?
+    ) -> AccessibilityComponent {
+        // Create an accessibility component.
+        var axComponent = AccessibilityComponent()
+        axComponent.isAccessibilityElement = true
+
+        // Add a label.
+        axComponent.label = "Earth model"
+
+        // Add a value that describes the model's current state.
+        var axValue = configuration.currentSpeed != 0 ? "Rotating, " : "Not rotating, "
+        axValue.append(configuration.showSun ? "with the sun shining, " : "with the sun not shining, ")
+        if configuration.axDescribeTilt {
+            if let dateString = configuration.date?.formatted(.dateTime.day().month(.wide)) {
+                axValue.append("and tilted for the date \(dateString)")
+            } else {
+                axValue.append("and no tilt")
+            }
+        }
+        if configuration.showPoles {
+            axValue.append("with the poles indicated, ")
+        }
+        for item in satelliteConfiguration.map({ $0.name }) {
+            axValue.append("a \(item) orbits close to the earth, ")
+        }
+        if moonConfiguration != nil {
+            axValue.append("the moon orbits at some distance from the earth.")
+        }
+        axComponent.value = LocalizedStringResource(stringLiteral: axValue)
+
+        // Add custom accessibility actions, if applicable.
+        if !configuration.axActions.isEmpty {
+            axComponent.customActions.append(contentsOf: configuration.axActions)
+        }
+
+        return axComponent
+    }
+
+    /// Calculates the orientation of the Earth's tilt on a specified date.
+    ///
+    /// This method assumes the sun appears at some distance from the Earth
+    /// along the negative x-axis.
+    ///
+    /// - Parameter date: The date that the Earth's tilt represents.
+    ///
+    /// - Returns: A representation of tilt that you apply to an Earth model.
+    private func tilt(date: Date?) -> simd_quatf {
+        // Assume a constant magnitude for the Earth's tilt angle.
+        let tiltAngle: Angle = .degrees(date == nil ? 0 : 23.5)
+
+        // Find the day in the year corresponding to the date.
+        let calendar = Calendar.autoupdatingCurrent
+        let day = calendar.ordinality(of: .day, in: .year, for: date ?? Date()) ?? 1
+
+        // Get an axis angle corresponding to the day of the year, assuming
+        // the sun appears in the negative x direction.
+        let axisAngle: Float = (Float(day) / 365.0) * 2.0 * .pi
+
+        // Create an axis that points the northern hemisphere toward the
+        // sun along the positive x-axis when axisAngle is zero.
+        let tiltAxis: SIMD3<Float> = [
+            sin(axisAngle),
+            0,
+            -cos(axisAngle)
+        ]
+
+        // Create and return a tilt orientation from the angle and axis.
+        return simd_quatf(angle: Float(tiltAngle.radians), axis: tiltAxis)
+    }
+}
+
+
+----!@#$----
+World/Entities/SatelliteEntity+Configuration.swift
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+Configuration information for satellite entities.
+*/
+
+import SwiftUI
+
+extension SatelliteEntity {
+    /// Configuration information for satellite entities.
+    struct Configuration {
+        var name: String
+        var isVisible: Bool = true
+        var inclination: Angle = .zero
+        var speedRatio: Float = 1
+        var scale: Float = 1
+        var altitude: Float = 0
+        var traceWidth: Float = 400
+        var isTraceVisible: Bool = false
+        var initialRotation: Angle = .zero
+
+        static var orbitSatelliteDefault: Configuration {
+            .init(
+                name: "Satellite",
+                inclination: .degrees(60),
+                speedRatio: 24.0 / 1.5,
+                scale: 0.8,
+                altitude: 0.4,
+                isTraceVisible: true)
+        }
+        
+        static var orbitMoonDefault: Configuration {
+            .init(
+                name: "Moon",
+                isVisible: true,
+                speedRatio: 1 / 2,
+                scale: 0.25,
+                altitude: 1.25,
+                initialRotation: .degrees(90))
+        }
+        
+        static var solarTelescopeDefault: Configuration {
+            .init(
+                name: "Telescope",
+                inclination: .degrees(60),
+                speedRatio: 24.0 / 1.5,
+                scale: 0.2,
+                altitude: 0.55)
+        }
+
+        static var solarMoonDefault: Configuration {
+            .init(
+                name: "Moon",
+                speedRatio: 1 / 28,
+                scale: 0.25,
+                altitude: 3.75,
+                initialRotation: .degrees(90))
+        }
+        static var disabledMoon: Configuration {
+            .init(
+                name: "Moon",
+                isVisible: false)
+        }
+    }
+}
+
+----!@#$----
+Packages/WorldAssets/README.md
+# WorldAssets
+
+This package contains model assets that Hello World uses, including:
+ * A globe.
+ * An Earth with moving clouds and ground light that turns off when the sun
+   is overhead.
+ * A somewhat emissive Moon model.
+ * A communications satellite.
+ * A telescope satellite.
+
+----!@#$----
+Packages/WorldAssets/Package.swift
+// swift-tools-version: 5.7
+/*
+See the LICENSE.txt file for this sample’s licensing information.
+
+Abstract:
+A package that contains model assets.
+*/
+
+import PackageDescription
+
+let package = Package(
+    name: "WorldAssets",
+    platforms: [
+        .custom("xros", versionString: "1.0")
+    ],
+    products: [
+        .library(
+            name: "WorldAssets",
+            targets: ["WorldAssets"])
+    ],
+    dependencies: [],
+    targets: [
+        .target(
+            name: "WorldAssets",
+            dependencies: [])
+    ]
+)
+
+--END--

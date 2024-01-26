@@ -1,0 +1,1427 @@
+The following text is a Git repository with code. The structure of the text are sections that begin with ----!@#$----, followed by a single line containing the file path and file name, followed by a variable amount of lines containing the file contents. The text representing the Git repository ends when the symbols --END-- are encounted. Any further text beyond --END-- are meant to be interpreted as instructions using the aforementioned Git repository as context.
+
+----!@#$----
+MetalRendererTests/MetalRendererTests.swift
+//
+//  MetalRendererTests.swift
+//  MetalRendererTests
+//
+//  Created by Chris Dillard on 1/5/24.
+//
+
+import XCTest
+@testable import MetalRenderer
+
+class MetalRendererTests: XCTestCase {
+
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func testExample() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // Any test you write for XCTest can be annotated as throws and async.
+        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
+        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    }
+
+    func testPerformanceExample() throws {
+        // This is an example of a performance test case.
+        self.measure {
+            // Put the code you want to measure the time of here.
+        }
+    }
+
+}
+
+----!@#$----
+Packages/RealityKitContent/README.md
+# RealityKitContent
+
+A description of this package.
+----!@#$----
+Packages/RealityKitContent/Package.swift
+// swift-tools-version:5.9
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
+import PackageDescription
+
+let package = Package(
+    name: "RealityKitContent",
+    products: [
+        // Products define the executables and libraries a package produces, and make them visible to other packages.
+        .library(
+            name: "RealityKitContent",
+            targets: ["RealityKitContent"]),
+    ],
+    dependencies: [
+        // Dependencies declare other packages that this package depends on.
+        // .package(url: /* package url */, from: "1.0.0"),
+    ],
+    targets: [
+        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
+        // Targets can depend on other targets in this package, and on products in packages this package depends on.
+        .target(
+            name: "RealityKitContent",
+            dependencies: []),
+    ]
+)
+----!@#$----
+Packages/RealityKitContent/Package.realitycomposerpro/ProjectData/main.json
+{
+  "pathsToIds" : {
+    "\/RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/GridMaterial.usda" : "CB766F92-EE55-4A63-9401-E7B8C009764D",
+    "\/RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Immersive.usda" : "65F6F990-A780-4474-B78B-572E0E4E273D",
+    "\/RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Scene.usda" : "0A9B4653-B11E-4D6A-850E-C6FCB621626C",
+    "\/RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Untitled Scene.usda" : "D560BB77-AAF3-4BDE-B7C4-989332A4688B",
+    "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/GridMaterial.usda" : "66168B71-AB05-424E-8B6C-D33D6E61B08F",
+    "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Immersive.usda" : "AF09ED6F-1707-48FD-8720-65B998362C09",
+    "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Scene.usda" : "D66134B1-3681-4A8E-AFE5-29F257229F3B"
+  }
+}
+----!@#$----
+Packages/RealityKitContent/Package.realitycomposerpro/WorkspaceData/Settings.rcprojectdata
+{
+  "cameraPresets" : {
+
+  },
+  "secondaryToolbarData" : {
+    "isGridVisible" : true,
+    "sceneReverbPreset" : -1
+  },
+  "unitDefaults" : {
+    "°" : "°",
+    "kg" : "g",
+    "m" : "cm",
+    "m\/s" : "m\/s",
+    "m\/s²" : "m\/s²",
+    "s" : "s"
+  }
+}
+----!@#$----
+Packages/RealityKitContent/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json
+{
+  "0A9B4653-B11E-4D6A-850E-C6FCB621626C" : {
+    "cameraTransform" : [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0.86602545,
+      -0.49999994,
+      0,
+      0,
+      0.49999994,
+      0.86602545,
+      0,
+      0.0035969093,
+      0.35542378,
+      0.62919164,
+      1
+    ],
+    "objectMetadataList" : [
+      [
+        "0A9B4653-B11E-4D6A-850E-C6FCB621626C",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "65F6F990-A780-4474-B78B-572E0E4E273D" : {
+    "cameraTransform" : [
+      1,
+      0,
+      -0,
+      0,
+      -0,
+      0.86602545,
+      -0.49999988,
+      0,
+      0,
+      0.49999988,
+      0.86602545,
+      0,
+      1.1972517e-08,
+      2.6179132,
+      0.43191218,
+      1
+    ],
+    "objectMetadataList" : [
+      [
+        "65F6F990-A780-4474-B78B-572E0E4E273D",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "66168B71-AB05-424E-8B6C-D33D6E61B08F" : {
+    "cameraTransform" : [
+      1,
+      0,
+      -0,
+      0,
+      -0,
+      0.8660254,
+      -0.5,
+      0,
+      0,
+      0.5,
+      0.8660254,
+      0,
+      0,
+      0.23875366,
+      0.4135335,
+      1
+    ],
+    "objectMetadataList" : [
+      [
+        "66168B71-AB05-424E-8B6C-D33D6E61B08F",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "AF09ED6F-1707-48FD-8720-65B998362C09" : {
+    "cameraTransform" : [
+      1,
+      0,
+      -0,
+      0,
+      -0,
+      0.7071069,
+      -0.7071067,
+      0,
+      0,
+      0.7071067,
+      0.7071069,
+      0,
+      0,
+      2.8836339,
+      -0.107588194,
+      1
+    ],
+    "objectMetadataList" : [
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Sphere_Left"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Sphere_Right"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "CB766F92-EE55-4A63-9401-E7B8C009764D" : {
+    "cameraTransform" : [
+      1,
+      0,
+      -0,
+      0,
+      -0,
+      0.8660253,
+      -0.5000001,
+      0,
+      0,
+      0.5000001,
+      0.8660253,
+      0,
+      0,
+      0.27093494,
+      0.4692731,
+      1
+    ],
+    "objectMetadataList" : [
+      [
+        "CB766F92-EE55-4A63-9401-E7B8C009764D",
+        "Root",
+        "GridMaterial"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "CB766F92-EE55-4A63-9401-E7B8C009764D",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "D560BB77-AAF3-4BDE-B7C4-989332A4688B" : {
+    "cameraTransform" : [
+      1,
+      0,
+      -0,
+      0,
+      -0,
+      0.8660253,
+      -0.5000001,
+      0,
+      0,
+      0.5000001,
+      0.8660253,
+      0,
+      0,
+      0.27093494,
+      0.4692731,
+      1
+    ],
+    "objectMetadataList" : [
+
+    ]
+  },
+  "D66134B1-3681-4A8E-AFE5-29F257229F3B" : {
+    "cameraTransform" : [
+      1,
+      0,
+      -0,
+      0,
+      -0,
+      0.7071069,
+      -0.7071067,
+      0,
+      0,
+      0.7071067,
+      0.7071069,
+      0,
+      0,
+      0.26894823,
+      0.26934713,
+      1
+    ],
+    "objectMetadataList" : [
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "GridMaterial",
+        "GridMaterial"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  }
+}
+----!@#$----
+Packages/RealityKitContent/Sources/RealityKitContent/RealityKitContent.swift
+import Foundation
+
+/// Bundle for the RealityKitContent project
+public let realityKitContentBundle = Bundle.module
+
+----!@#$----
+Packages/RealityKitContent/Sources/RealityKitContent/RealityKitContent.rkassets/Immersive.usda
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Sphere_Left", "Sphere_Right", "GridMaterial"]
+    def Sphere "Sphere_Right" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/GridMaterial/GridMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.5, 1.5, -1.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Sphere "Sphere_Left" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/GridMaterial/GridMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.5, 1.5, -1.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "GridMaterial" (
+        active = true
+        prepend references = @Materials/GridMaterial.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+
+
+----!@#$----
+Packages/RealityKitContent/Sources/RealityKitContent/RealityKitContent.rkassets/Scene.usda
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["GridMaterial", "Sphere"]
+    rel material:binding = None (
+        bindMaterialAs = "weakerThanDescendants"
+    )
+
+    def Sphere "Sphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/GridMaterial/GridMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.05
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0.0004)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.2, 0.2, 0.2)
+                float radius = 0.05
+                token shapeType = "Sphere"
+            }
+        }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+    }
+
+    def "GridMaterial" (
+        active = true
+        prepend references = @Materials/GridMaterial.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+
+
+----!@#$----
+Packages/RealityKitContent/Sources/RealityKitContent/RealityKitContent.rkassets/Materials/GridMaterial.usda
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Material "GridMaterial"
+    {
+        reorder nameChildren = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "DefaultSurfaceShader", "MaterialXPreviewSurface", "Texcoord", "Add", "Multiply", "Fractional", "LineCounts", "Multiply_1", "Separate2", "Separate2_1", "Ifgreater", "Ifgreater_1", "Max", "Background_Color"]
+        token outputs:mtlx:surface.connect = </Root/GridMaterial/MaterialXPreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        token outputs:surface
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (2222, 300.5)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (182, 89)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 749
+
+        def Shader "DefaultSurfaceShader"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (1, 1, 1)
+            float inputs:roughness = 0.75
+            token outputs:surface
+        }
+
+        def Shader "MaterialXPreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            float inputs:clearcoat
+            float inputs:clearcoatRoughness
+            color3f inputs:diffuseColor.connect = </Root/GridMaterial/Remap.outputs:out>
+            color3f inputs:emissiveColor
+            float inputs:ior
+            float inputs:metallic = 0.15
+            float3 inputs:normal
+            float inputs:occlusion
+            float inputs:opacity
+            float inputs:opacityThreshold
+            float inputs:roughness = 0.5
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (1967, 300.5)
+            float2 ui:nodegraph:node:size = (208, 297)
+            int ui:nodegraph:node:stackingOrder = 870
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+        }
+
+        def Shader "Texcoord"
+        {
+            uniform token info:id = "ND_texcoord_vector2"
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (94.14453, 35.29297)
+            float2 ui:nodegraph:node:size = (182, 43)
+            int ui:nodegraph:node:stackingOrder = 1358
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_vector2"
+            float2 inputs:in1.connect = </Root/GridMaterial/Texcoord.outputs:out>
+            float2 inputs:in2 = (32, 15)
+            float2 inputs:in2.connect = </Root/GridMaterial/LineCounts.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (275.64453, 47.29297)
+            float2 ui:nodegraph:node:size = (61, 36)
+            int ui:nodegraph:node:stackingOrder = 1348
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in2"]
+        }
+
+        def Shader "Fractional"
+        {
+            uniform token info:id = "ND_realitykit_fractional_vector2"
+            float2 inputs:in.connect = </Root/GridMaterial/Multiply.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (440.5, 49.5)
+            float2 ui:nodegraph:node:size = (155, 99)
+            int ui:nodegraph:node:stackingOrder = 1345
+        }
+
+        def Shader "BaseColor"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.89737034, 0.89737034, 0.89737034) (
+                colorSpace = "Input - Texture - sRGB - sRGB"
+            )
+            color3f inputs:value.connect = None
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (1537.5977, 363.07812)
+            float2 ui:nodegraph:node:size = (150, 43)
+            int ui:nodegraph:node:stackingOrder = 1353
+        }
+
+        def Shader "LineColor"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.55945957, 0.55945957, 0.55945957) (
+                colorSpace = "Input - Texture - sRGB - sRGB"
+            )
+            color3f inputs:value.connect = None
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (1536.9844, 287.86328)
+            float2 ui:nodegraph:node:size = (146, 43)
+            int ui:nodegraph:node:stackingOrder = 1355
+        }
+
+        def Shader "LineWidths"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1 = 0.1
+            float inputs:in2 = 0.1
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (443.64453, 233.79297)
+            float2 ui:nodegraph:node:size = (151, 43)
+            int ui:nodegraph:node:stackingOrder = 1361
+        }
+
+        def Shader "LineCounts"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1 = 24
+            float inputs:in2 = 12
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (94.14453, 138.29297)
+            float2 ui:nodegraph:node:size = (153, 43)
+            int ui:nodegraph:node:stackingOrder = 1359
+        }
+
+        def Shader "Remap"
+        {
+            uniform token info:id = "ND_remap_color3"
+            color3f inputs:in.connect = </Root/GridMaterial/Combine3.outputs:out>
+            color3f inputs:inhigh.connect = None
+            color3f inputs:inlow.connect = None
+            color3f inputs:outhigh.connect = </Root/GridMaterial/BaseColor.outputs:out>
+            color3f inputs:outlow.connect = </Root/GridMaterial/LineColor.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (1755.5, 300.5)
+            float2 ui:nodegraph:node:size = (95, 171)
+            int ui:nodegraph:node:stackingOrder = 1282
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:outlow"]
+        }
+
+        def Shader "Separate2"
+        {
+            uniform token info:id = "ND_separate2_vector2"
+            float2 inputs:in.connect = </Root/GridMaterial/Range.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float2 ui:nodegraph:node:pos = (1212.6445, 128.91797)
+            float2 ui:nodegraph:node:size = (116, 117)
+            int ui:nodegraph:node:stackingOrder = 1363
+        }
+
+        def Shader "Combine3"
+        {
+            uniform token info:id = "ND_combine3_color3"
+            float inputs:in1.connect = </Root/GridMaterial/Min.outputs:out>
+            float inputs:in2.connect = </Root/GridMaterial/Min.outputs:out>
+            float inputs:in3.connect = </Root/GridMaterial/Min.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (1578.1445, 128.91797)
+            float2 ui:nodegraph:node:size = (146, 54)
+            int ui:nodegraph:node:stackingOrder = 1348
+        }
+
+        def Shader "Range"
+        {
+            uniform token info:id = "ND_range_vector2"
+            bool inputs:doclamp = 1
+            float2 inputs:gamma = (2, 2)
+            float2 inputs:in.connect = </Root/GridMaterial/Absval.outputs:out>
+            float2 inputs:inhigh.connect = </Root/GridMaterial/LineWidths.outputs:out>
+            float2 inputs:inlow = (0.02, 0.02)
+            float2 inputs:outhigh
+            float2 inputs:outlow
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (990.64453, 128.91797)
+            float2 ui:nodegraph:node:size = (98, 207)
+            int ui:nodegraph:node:stackingOrder = 1364
+        }
+
+        def Shader "Subtract"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/GridMaterial/Fractional.outputs:out>
+            float2 inputs:in2.connect = </Root/GridMaterial/LineWidths.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (612.64453, 87.04297)
+            float2 ui:nodegraph:node:size = (63, 36)
+            int ui:nodegraph:node:stackingOrder = 1348
+        }
+
+        def Shader "Absval"
+        {
+            uniform token info:id = "ND_absval_vector2"
+            float2 inputs:in.connect = </Root/GridMaterial/Subtract.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (765.64453, 87.04297)
+            float2 ui:nodegraph:node:size = (123, 43)
+            int ui:nodegraph:node:stackingOrder = 1348
+        }
+
+        def Shader "Min"
+        {
+            uniform token info:id = "ND_min_float"
+            float inputs:in1.connect = </Root/GridMaterial/Separate2.outputs:outx>
+            float inputs:in2.connect = </Root/GridMaterial/Separate2.outputs:outy>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1388.1445, 128.91797)
+            float2 ui:nodegraph:node:size = (114, 36)
+            int ui:nodegraph:node:stackingOrder = 1363
+        }
+    }
+}
+
+
+----!@#$----
+MetalRenderer/MetalRendererApp.swift
+//
+//  App.swift
+//
+
+import SwiftUI
+import CompositorServices
+
+struct ContentStageConfiguration: CompositorLayerConfiguration {
+    func makeConfiguration(capabilities: LayerRenderer.Capabilities, configuration: inout LayerRenderer.Configuration) {
+        configuration.depthFormat = .depth32Float
+        configuration.colorFormat = .bgra8Unorm_srgb
+    
+        let foveationEnabled = capabilities.supportsFoveation
+        configuration.isFoveationEnabled = foveationEnabled
+        
+        let options: LayerRenderer.Capabilities.SupportedLayoutsOptions = foveationEnabled ? [.foveationEnabled] : []
+        let supportedLayouts = capabilities.supportedLayouts(options: options)
+        
+        configuration.layout = supportedLayouts.contains(.layered) ? .layered : .dedicated
+    }
+}
+
+@main
+struct TestingApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+
+        ImmersiveSpace(id: "ImmersiveSpace") {
+            CompositorLayer(configuration: ContentStageConfiguration()) { layerRenderer in
+                let renderer = Renderer(layerRenderer)
+                renderer.startRenderLoop()
+            }
+        }.immersionStyle(selection: .constant(.full), in: .full)
+    }
+}
+
+
+----!@#$----
+MetalRenderer/Shaders.metal
+//
+//  Shaders.metal
+//
+
+// File for Metal kernel and shader functions
+
+//
+//  Shaders.metal
+//
+
+// File for Metal kernel and shader functions
+
+#include <metal_stdlib>
+#include <simd/simd.h>
+
+// Including header shared between this Metal shader code and Swift/C code executing Metal API commands
+#import "ShaderTypes.h"
+
+using namespace metal;
+
+typedef struct
+{
+    float3 position [[attribute(VertexAttributePosition)]];
+    float2 texCoord [[attribute(VertexAttributeTexcoord)]];
+} Vertex;
+
+typedef struct
+{
+    float4 position [[position]];
+    float2 texCoord;
+} ColorInOut;
+float random(float seed) {
+    return fract(sin(seed) * 43758.5453123);
+}
+
+vertex ColorInOut vertexShader(Vertex in [[stage_in]],
+                               ushort amp_id [[amplification_id]],
+                               constant UniformsArray & uniformsArray [[ buffer(BufferIndexUniforms) ]])
+{
+    ColorInOut out;
+
+    Uniforms uniforms = uniformsArray.uniforms[amp_id];
+
+    float4 position = float4(in.position, 1.0);
+
+    // Retaining Base wave parameters
+    float baseWaveAmplitude = 5; // Base amplitude
+    float waveFrequency = 0.05; // Wave frequency
+//    float randomValue = random(in.position.x * 12.9898 + in.position.y * 78.233 + in.position.z * 37.719);
+//    // Retaining Pseudo-random variation factor based on negative position.z
+    float variationFactor = sin(-position.z * 1.3) * cos(-position.z * 0.7);
+
+    // Retaining Amplitude adjustment with pseudo-random variation
+    float waveAmplitude = baseWaveAmplitude * (1.0 + variationFactor * 0.365);
+//    waveAmplitude += randomValue * 5.0;  // Adjust multiplier for more or less randomness
+//    // Applying the static sine wave effect along the y-axis based on the negative z-coordinate
+    position.y += waveAmplitude * sin(waveFrequency * -position.z);
+
+
+
+    // Calculate diagonal movement
+    float diagonalSpeedZ = 175; // Adjust this value for desired speed on Z axis
+    float diagonalSpeedY = 0.175	; // Adjust this value for desired speed on Y axis
+    float diagonalMovementZ = diagonalSpeedZ * uniforms.time;
+    float diagonalMovementY = diagonalSpeedY * uniforms.time;
+
+
+    // Slope parameters for descending effect
+    float slope = -0.75; // Negative for downward slope along the -z axis
+
+    // Apply the linear downward slope along the -z axis
+    position.y += slope * -position.z + diagonalMovementY;
+
+    float scaleFactor = 7.5;
+    position.xy *= scaleFactor;
+    position.z *= scaleFactor; //+ diagonalMovementZ;
+
+    out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position;
+    out.texCoord = in.texCoord;
+
+    return out;
+}
+
+
+
+
+fragment float4 fragmentShader(ColorInOut in [[stage_in]],
+                               texture2d<half> colorMap     [[ texture(TextureIndexColor) ]])
+{
+    constexpr sampler colorSampler(mip_filter::linear,
+                                   mag_filter::linear,
+                                   min_filter::linear);
+
+    half4 colorSample   = colorMap.sample(colorSampler, in.texCoord.xy);
+
+    return float4(colorSample);
+}
+
+----!@#$----
+MetalRenderer/ShaderTypes.h
+//
+//  ShaderTypes.h
+//
+
+//
+//  Header containing types and enum constants shared between Metal shaders and Swift/ObjC source
+//
+#ifndef ShaderTypes_h
+#define ShaderTypes_h
+
+#ifdef __METAL_VERSION__
+#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
+typedef metal::int32_t EnumBackingType;
+#else
+#import <Foundation/Foundation.h>
+typedef NSInteger EnumBackingType;
+#endif
+
+#include <simd/simd.h>
+
+typedef NS_ENUM(EnumBackingType, BufferIndex)
+{
+    BufferIndexMeshPositions = 0,
+    BufferIndexMeshGenerics  = 1,
+    BufferIndexUniforms      = 2
+};
+
+typedef NS_ENUM(EnumBackingType, VertexAttribute)
+{
+    VertexAttributePosition  = 0,
+    VertexAttributeTexcoord  = 1,
+};
+
+typedef NS_ENUM(EnumBackingType, TextureIndex)
+{
+    TextureIndexColor    = 0,
+};
+
+typedef struct
+{
+    matrix_float4x4 projectionMatrix;
+    matrix_float4x4 modelViewMatrix;
+} Uniforms;
+
+typedef struct
+{
+    Uniforms uniforms[2];
+} UniformsArray;
+
+#endif /* ShaderTypes_h */
+
+
+----!@#$----
+MetalRenderer/ContentView.swift
+//
+//  ContentView.swift
+//  MetalRenderer
+//
+//  Created by Chris Dillard on 1/5/24.
+//
+
+import SwiftUI
+import RealityKit
+import RealityKitContent
+
+struct ContentView: View {
+
+    @State private var showImmersiveSpace = false
+    @State private var immersiveSpaceIsShown = false
+
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+
+    var body: some View {
+        VStack {
+            Model3D(named: "Scene", bundle: realityKitContentBundle)
+                .padding(.bottom, 50)
+
+            Text("Hello, world!")
+
+            Toggle("Show Immersive Space", isOn: $showImmersiveSpace)
+                .toggleStyle(.button)
+                .padding(.top, 50)
+        }
+        .padding()
+        .onChange(of: showImmersiveSpace) { _, newValue in
+            Task {
+                if newValue {
+                    switch await openImmersiveSpace(id: "ImmersiveSpace") {
+                    case .opened:
+                        immersiveSpaceIsShown = true
+                    case .error, .userCancelled:
+                        fallthrough
+                    @unknown default:
+                        immersiveSpaceIsShown = false
+                        showImmersiveSpace = false
+                    }
+                } else if immersiveSpaceIsShown {
+                    await dismissImmersiveSpace()
+                    immersiveSpaceIsShown = false
+                }
+            }
+        }
+    }
+}
+
+#Preview(windowStyle: .automatic) {
+    ContentView()
+}
+
+----!@#$----
+MetalRenderer/Info.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationPreferredDefaultSceneSessionRole</key>
+		<string>UIWindowSceneSessionRoleApplication</string>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+</dict>
+</plist>
+
+----!@#$----
+MetalRenderer/Renderer.swift
+//
+//  Renderer.swift
+//
+
+//
+//  Renderer.swift
+//
+
+import CompositorServices
+import Metal
+import MetalKit
+import simd
+import Spatial
+
+// The 256 byte aligned size of our uniform structure
+let alignedUniformsSize = (MemoryLayout<UniformsArray>.size + 0xFF) & -0x100
+
+let maxBuffersInFlight = 3
+
+enum RendererError: Error {
+    case badVertexDescriptor
+}
+
+extension LayerRenderer.Clock.Instant.Duration {
+    var timeInterval: TimeInterval {
+        let nanoseconds = TimeInterval(components.attoseconds / 1_000_000_000)
+        return TimeInterval(components.seconds) + (nanoseconds / TimeInterval(NSEC_PER_SEC))
+    }
+}
+struct Vertex {
+    var position: SIMD3<Float>  // Position of the vertex, corresponding to float3 in MSL
+    var padding: Float = 0.0    // Padding to align memory with Metal's expectations
+
+    init(x: Float, y: Float, z: Float) {
+        self.position = SIMD3<Float>(x, y, z)
+    }
+
+    // Convert to array
+    func toArray() -> [Float] {
+        return [position.x, position.y, position.z, padding]
+    }
+}
+
+class Renderer {
+
+    public let device: MTLDevice
+    let commandQueue: MTLCommandQueue
+    var dynamicUniformBuffer: MTLBuffer
+    var pipelineState: MTLRenderPipelineState
+    var depthState: MTLDepthStencilState
+    var colorMap: MTLTexture
+
+    let inFlightSemaphore = DispatchSemaphore(value: maxBuffersInFlight)
+
+    var uniformBufferOffset = 0
+
+    var uniformBufferIndex = 0
+
+    var uniforms: UnsafeMutablePointer<UniformsArray>
+
+    var rotation: Float = 0
+
+    var mesh: MTKMesh
+
+    let startPosition = Vector3D(x:0.0,y: -160,z: -260)
+
+    var waveFarthestZ: Float = -10 // Example value, adjust based on your wave mesh
+
+    let arSession: ARKitSession
+    let worldTracking: WorldTrackingProvider
+    let layerRenderer: LayerRenderer
+    var time: Float = 0
+    init(_ layerRenderer: LayerRenderer) {
+        self.layerRenderer = layerRenderer
+        self.device = layerRenderer.device
+        self.commandQueue = self.device.makeCommandQueue()!
+
+        let uniformBufferSize = alignedUniformsSize * maxBuffersInFlight
+
+        self.dynamicUniformBuffer = self.device.makeBuffer(length:uniformBufferSize,
+                                                           options:[MTLResourceOptions.storageModeShared])!
+
+        self.dynamicUniformBuffer.label = "UniformBuffer"
+
+        uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to:UniformsArray.self, capacity:1)
+
+        let mtlVertexDescriptor = Renderer.buildMetalVertexDescriptor()
+
+        do {
+            pipelineState = try Renderer.buildRenderPipelineWithDevice(device: device,
+                                                                       layerRenderer: layerRenderer,
+                                                                       mtlVertexDescriptor: mtlVertexDescriptor)
+        } catch {
+            fatalError("Unable to compile render pipeline state.  Error info: \(error)")
+        }
+
+        let depthStateDescriptor = MTLDepthStencilDescriptor()
+        depthStateDescriptor.depthCompareFunction = MTLCompareFunction.greater
+        depthStateDescriptor.isDepthWriteEnabled = true
+        self.depthState = device.makeDepthStencilState(descriptor:depthStateDescriptor)!
+
+        do {
+            mesh = try Renderer.buildMesh(device: device, mtlVertexDescriptor: mtlVertexDescriptor)
+        } catch {
+            fatalError("Unable to build MetalKit Mesh. Error info: \(error)")
+        }
+
+        do {
+            colorMap = try Renderer.loadTexture(device: device, textureName: "ColorMap")
+        } catch {
+            fatalError("Unable to load texture. Error info: \(error)")
+        }
+
+        worldTracking = WorldTrackingProvider()
+        arSession = ARKitSession()
+    }
+
+    func startRenderLoop() {
+        Task {
+            do {
+                try await arSession.run([worldTracking])
+            } catch {
+                fatalError("Failed to initialize ARSession")
+            }
+
+            let renderThread = Thread {
+                self.renderLoop()
+            }
+            renderThread.name = "Render Thread"
+            renderThread.start()
+        }
+    }
+
+    class func buildMetalVertexDescriptor() -> MTLVertexDescriptor {
+        // Create a Metal vertex descriptor specifying how vertices will by laid out for input into our render
+        //   pipeline and how we'll layout our Model IO vertices
+
+        let mtlVertexDescriptor = MTLVertexDescriptor()
+
+        mtlVertexDescriptor.attributes[VertexAttribute.position.rawValue].format = MTLVertexFormat.float3
+        mtlVertexDescriptor.attributes[VertexAttribute.position.rawValue].offset = 0
+        mtlVertexDescriptor.attributes[VertexAttribute.position.rawValue].bufferIndex = BufferIndex.meshPositions.rawValue
+
+        mtlVertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].format = MTLVertexFormat.float2
+        mtlVertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].offset = 0
+        mtlVertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].bufferIndex = BufferIndex.meshGenerics.rawValue
+
+        mtlVertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stride = 12
+        mtlVertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepRate = 1
+        mtlVertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepFunction = MTLVertexStepFunction.perVertex
+
+        mtlVertexDescriptor.layouts[BufferIndex.meshGenerics.rawValue].stride = 8
+        mtlVertexDescriptor.layouts[BufferIndex.meshGenerics.rawValue].stepRate = 1
+        mtlVertexDescriptor.layouts[BufferIndex.meshGenerics.rawValue].stepFunction = MTLVertexStepFunction.perVertex
+
+        return mtlVertexDescriptor
+    }
+
+    class func buildRenderPipelineWithDevice(device: MTLDevice,
+                                             layerRenderer: LayerRenderer,
+                                             mtlVertexDescriptor: MTLVertexDescriptor) throws -> MTLRenderPipelineState {
+        /// Build a render state pipeline object
+
+        let library = device.makeDefaultLibrary()
+
+        let vertexFunction = library?.makeFunction(name: "vertexShader")
+        let fragmentFunction = library?.makeFunction(name: "fragmentShader")
+
+        let pipelineDescriptor = MTLRenderPipelineDescriptor()
+        pipelineDescriptor.label = "RenderPipeline"
+        pipelineDescriptor.vertexFunction = vertexFunction
+        pipelineDescriptor.fragmentFunction = fragmentFunction
+        pipelineDescriptor.vertexDescriptor = mtlVertexDescriptor
+
+        pipelineDescriptor.colorAttachments[0].pixelFormat = layerRenderer.configuration.colorFormat
+        pipelineDescriptor.depthAttachmentPixelFormat = layerRenderer.configuration.depthFormat
+
+        pipelineDescriptor.maxVertexAmplificationCount = layerRenderer.properties.viewCount
+
+        return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+    }
+//
+    class func buildMesh(device: MTLDevice,
+                         mtlVertexDescriptor: MTLVertexDescriptor) throws -> MTKMesh {
+        /// Create and condition mesh data to feed into a pipeline using the given vertex descriptor
+
+        let metalAllocator = MTKMeshBufferAllocator(device: device)
+
+        // Define dimensions and segments for the plane
+         let dimensions = vector_float2(10, 100) // Example dimensions: 10x10
+         let segments = vector_uint2(100, 500) // Example segments: 2x2
+
+         // Create the plane mesh
+         let mdlMesh = MDLMesh.newPlane(withDimensions: dimensions, segments: segments, geometryType: .triangles, allocator: metalAllocator)
+
+
+        let mdlVertexDescriptor = MTKModelIOVertexDescriptorFromMetal(mtlVertexDescriptor)
+
+        guard let attributes = mdlVertexDescriptor.attributes as? [MDLVertexAttribute] else {
+            throw RendererError.badVertexDescriptor
+        }
+        attributes[VertexAttribute.position.rawValue].name = MDLVertexAttributePosition
+        attributes[VertexAttribute.texcoord.rawValue].name = MDLVertexAttributeTextureCoordinate
+
+        mdlMesh.vertexDescriptor = mdlVertexDescriptor
+
+        return try MTKMesh(mesh:mdlMesh, device:device)
+    }
+
+    class func loadTexture(device: MTLDevice,
+                           textureName: String) throws -> MTLTexture {
+        /// Load texture data with optimal parameters for sampling
+
+        let textureLoader = MTKTextureLoader(device: device)
+
+        let textureLoaderOptions = [
+            MTKTextureLoader.Option.textureUsage: NSNumber(value: MTLTextureUsage.shaderRead.rawValue),
+            MTKTextureLoader.Option.textureStorageMode: NSNumber(value: MTLStorageMode.`private`.rawValue)
+        ]
+
+        return try textureLoader.newTexture(name: textureName,
+                                            scaleFactor: 1.0,
+                                            bundle: nil,
+                                            options: textureLoaderOptions)
+
+    }
+
+    private func updateDynamicBufferState() {
+        /// Update the state of our uniform buffers before rendering
+
+        uniformBufferIndex = (uniformBufferIndex + 1) % maxBuffersInFlight
+
+        uniformBufferOffset = alignedUniformsSize * uniformBufferIndex
+
+        uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents() + uniformBufferOffset).bindMemory(to:UniformsArray.self, capacity:1)
+    }
+
+    func matrix4x4_uniform_scale(_ scale: Float) -> matrix_float4x4 {
+        var matrix = matrix_identity_float4x4
+        matrix.columns.0.x = scale
+        matrix.columns.1.y = scale
+        matrix.columns.2.z = scale
+        return matrix
+    }
+
+    private func updateGameState(drawable: LayerRenderer.Drawable, deviceAnchor: DeviceAnchor?) {
+        /// Update any game state before rendering
+
+        let rotationAxis = SIMD3<Float>(1, 1, 0)
+        let modelRotationMatrix = matrix4x4_rotation(radians: rotation, axis: rotationAxis)
+
+        
+        // START POSITION
+        let modelTranslationMatrix = matrix4x4_translation(Float(startPosition.x), Float(startPosition.y), Float(startPosition.z))
+        let modelMatrix = modelTranslationMatrix * modelRotationMatrix
+
+        let simdDeviceAnchor = deviceAnchor?.originFromAnchorTransform ?? matrix_identity_float4x4
+
+        func uniforms(forViewIndex viewIndex: Int) -> Uniforms {
+            let view = drawable.views[viewIndex]
+            let viewMatrix = (simdDeviceAnchor * view.transform).inverse
+            let projection = ProjectiveTransform3D(leftTangent: Double(view.tangents[0]),
+                                                   rightTangent: Double(view.tangents[1]),
+                                                   topTangent: Double(view.tangents[2]),
+                                                   bottomTangent: Double(view.tangents[3]),
+                                                   nearZ: Double(drawable.depthRange.y),
+                                                   farZ: Double(drawable.depthRange.x),
+                                                   reverseZ: true)
+
+            // Include time in Uniforms
+            return Uniforms(projectionMatrix: .init(projection), modelViewMatrix: viewMatrix * modelMatrix, time: self.time)
+        }
+
+        self.uniforms[0].uniforms.0 = uniforms(forViewIndex: 0)
+        if drawable.views.count > 1 {
+            self.uniforms[0].uniforms.1 = uniforms(forViewIndex: 1)
+        }
+
+        // Extract player position from deviceAnchor
+        let playerPosition = SIMD3<Float>(
+            deviceAnchor?.originFromAnchorTransform.columns.3.x ?? 0,
+            deviceAnchor?.originFromAnchorTransform.columns.3.y ?? 0,
+            deviceAnchor?.originFromAnchorTransform.columns.3.z ?? 0
+        )
+        //print("player position = \(playerPosition)")
+        
+        // Calculate the necessary translation for the wave
+        let desiredWavePositionZ = playerPosition.z
+        let translationZ = desiredWavePositionZ - waveFarthestZ
+
+        // Update your model transformation for the wave here
+        // This would typically involve updating a uniform or a similar mechanism
+        // to pass the transformation to your vertex shader
+        // For this example, let's assume you have a method to update uniforms
+    //    updateWavePositionUniforms(translationZ: translationZ)
+
+        // Increment time by a fixed amount each frame to animate the wave effect
+        // Assuming a 60 FPS frame rate, increment by 1/60th of a second
+
+                time += 1.0 / 60.0
+
+        // rotation += 0.01
+    }
+
+    func renderFrame() {
+        /// Per frame updates hare
+
+        guard let frame = layerRenderer.queryNextFrame() else { return }
+
+        frame.startUpdate()
+
+        // Perform frame independent work
+
+        frame.endUpdate()
+
+        guard let timing = frame.predictTiming() else { return }
+        LayerRenderer.Clock().wait(until: timing.optimalInputTime)
+
+
+        guard let commandBuffer = commandQueue.makeCommandBuffer() else {
+            fatalError("Failed to create command buffer")
+        }
+
+        guard let drawable = frame.queryDrawable() else { return }
+
+        _ = inFlightSemaphore.wait(timeout: DispatchTime.distantFuture)
+
+        frame.startSubmission()
+
+        let time = LayerRenderer.Clock.Instant.epoch.duration(to: drawable.frameTiming.presentationTime).timeInterval
+        let deviceAnchor = worldTracking.queryDeviceAnchor(atTimestamp: time)
+
+        drawable.deviceAnchor = deviceAnchor
+
+        let semaphore = inFlightSemaphore
+        commandBuffer.addCompletedHandler { (_ commandBuffer)-> Swift.Void in
+            semaphore.signal()
+        }
+
+        self.updateDynamicBufferState()
+
+        self.updateGameState(drawable: drawable, deviceAnchor: deviceAnchor)
+
+        let renderPassDescriptor = MTLRenderPassDescriptor()
+        renderPassDescriptor.colorAttachments[0].texture = drawable.colorTextures[0]
+        renderPassDescriptor.colorAttachments[0].loadAction = .clear
+        renderPassDescriptor.colorAttachments[0].storeAction = .store
+        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        renderPassDescriptor.depthAttachment.texture = drawable.depthTextures[0]
+        renderPassDescriptor.depthAttachment.loadAction = .clear
+        renderPassDescriptor.depthAttachment.storeAction = .store
+        renderPassDescriptor.depthAttachment.clearDepth = 0.0
+        renderPassDescriptor.rasterizationRateMap = drawable.rasterizationRateMaps.first
+        if layerRenderer.configuration.layout == .layered {
+            renderPassDescriptor.renderTargetArrayLength = drawable.views.count
+        }
+
+        /// Final pass rendering code here
+        guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
+            fatalError("Failed to create render encoder")
+        }
+
+        renderEncoder.label = "Primary Render Encoder"
+
+        renderEncoder.pushDebugGroup("Draw Box")
+
+        renderEncoder.setCullMode(.back)
+
+        renderEncoder.setFrontFacing(.counterClockwise)
+
+        renderEncoder.setRenderPipelineState(pipelineState)
+
+        renderEncoder.setDepthStencilState(depthState)
+
+        renderEncoder.setVertexBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
+
+        let viewports = drawable.views.map { $0.textureMap.viewport }
+
+        renderEncoder.setViewports(viewports)
+
+        if drawable.views.count > 1 {
+            var viewMappings = (0..<drawable.views.count).map {
+                MTLVertexAmplificationViewMapping(viewportArrayIndexOffset: UInt32($0),
+                                                  renderTargetArrayIndexOffset: UInt32($0))
+            }
+            renderEncoder.setVertexAmplificationCount(viewports.count, viewMappings: &viewMappings)
+        }
+
+
+        for (index, element) in mesh.vertexDescriptor.layouts.enumerated() {
+            guard let layout = element as? MDLVertexBufferLayout else {
+                return
+            }
+
+            if layout.stride != 0 {
+                let buffer = mesh.vertexBuffers[index]
+                renderEncoder.setVertexBuffer(buffer.buffer, offset:buffer.offset, index: index)
+            }
+        }
+
+        renderEncoder.setFragmentTexture(colorMap, index: TextureIndex.color.rawValue)
+
+        for submesh in mesh.submeshes {
+            renderEncoder.drawIndexedPrimitives(type: submesh.primitiveType,
+                                                indexCount: submesh.indexCount,
+                                                indexType: submesh.indexType,
+                                                indexBuffer: submesh.indexBuffer.buffer,
+                                                indexBufferOffset: submesh.indexBuffer.offset)
+
+        }
+
+        renderEncoder.popDebugGroup()
+
+        renderEncoder.endEncoding()
+
+        drawable.encodePresent(commandBuffer: commandBuffer)
+
+        commandBuffer.commit()
+
+        frame.endSubmission()
+    }
+
+    func renderLoop() {
+        while true {
+            if layerRenderer.state == .invalidated {
+                print("Layer is invalidated")
+                return
+            } else if layerRenderer.state == .paused {
+                layerRenderer.waitUntilRunning()
+                continue
+            } else {
+                autoreleasepool {
+                    self.renderFrame()
+                }
+            }
+        }
+    }
+}
+
+// Generic matrix math utility functions
+func matrix4x4_rotation(radians: Float, axis: SIMD3<Float>) -> matrix_float4x4 {
+    let unitAxis = normalize(axis)
+    let ct = cosf(radians)
+    let st = sinf(radians)
+    let ci = 1 - ct
+    let x = unitAxis.x, y = unitAxis.y, z = unitAxis.z
+    return matrix_float4x4.init(columns:(vector_float4(    ct + x * x * ci, y * x * ci + z * st, z * x * ci - y * st, 0),
+                                         vector_float4(x * y * ci - z * st,     ct + y * y * ci, z * y * ci + x * st, 0),
+                                         vector_float4(x * z * ci + y * st, y * z * ci - x * st,     ct + z * z * ci, 0),
+                                         vector_float4(                  0,                   0,                   0, 1)))
+}
+
+func matrix4x4_translation(_ translationX: Float, _ translationY: Float, _ translationZ: Float) -> matrix_float4x4 {
+    return matrix_float4x4.init(columns:(vector_float4(1, 0, 0, 0),
+                                         vector_float4(0, 1, 0, 0),
+                                         vector_float4(0, 0, 1, 0),
+                                         vector_float4(translationX, translationY, translationZ, 1)))
+}
+
+func radians_from_degrees(_ degrees: Float) -> Float {
+    return (degrees / 180) * .pi
+}
+
+--END--
